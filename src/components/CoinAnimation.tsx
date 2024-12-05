@@ -1,8 +1,8 @@
-import { useState } from "react"
+// import { useState } from "react"
 
 const CoinAnimation = () => {
-    const [coins, setCoins] = useState([])
-    const dispatch = 
+    // const [coins, setCoins] = useState([])
+  
     return (
     <div>CoinAnimation</div>
   )
