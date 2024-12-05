@@ -15,7 +15,7 @@ const BottomNav = () => {
                 <Btn children={<MdHomeFilled />} label="Home" currentScreen={currentScreen} url="/" />
                 <Btn children={<FaMoneyBillAlt />} label="Earn" currentScreen={currentScreen} url="/earn" />
                 <Btn children={<FaUsers />} label="Referrals" currentScreen={currentScreen} url="/referrals" />
-                <Btn children={<FaCalendarCheck />} label="Daliy" currentScreen={currentScreen} url="/daliy" />
+                <Btn children={<FaCalendarCheck />} label="Daily" currentScreen={currentScreen} url="/daily" />
                 <Btn children={<FaBitcoin />} label="AirDrops" currentScreen={currentScreen} url="/airdrops" />
             </nav>
         </div>
