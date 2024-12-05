@@ -263,7 +263,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 // Components
 import BottomNav from "@/components/BottomNav";
-import Loading from "@/components/Loading";
+// import CalculateNums from "@/components/CalculateNums";
+// import CoinAnimation from "@/components/CoinAnimation";
 
 // Screens
 import AirDrops from "@/screens/AirDrops";

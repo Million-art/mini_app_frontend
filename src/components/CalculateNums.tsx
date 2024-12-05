@@ -1,6 +1,5 @@
 
 const CalculateNums = () => {
-
   return (
     <div>CalculateNums</div>
   )

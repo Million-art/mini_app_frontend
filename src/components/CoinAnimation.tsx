@@ -1,6 +1,7 @@
 
 const CoinAnimation = () => {
-  return (
+
+    return (
     <div>CoinAnimation</div>
   )
 }
