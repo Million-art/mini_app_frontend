@@ -24,7 +24,17 @@ const UserRank = () => {
                 </div>
             </div>
             <div className="-ml-3 w-full z-10">
-                    <p className="text-sm mb-1 tracking-wider text-white ml-6"></p>
+                <p className="text-sm mb-1 tracking-wider text-white ml-6">
+                    Your rank is 5
+                    <span className="mx-4">{">"}</span>
+                    5/1000
+                </p>
+                <div className="flex items-center border-2 border-[#43433b] rounded-r-full">
+                    <div className="w-full h-3 bg-[#43433b]/[0.6] rounded-full"
+                        style={{ width: `10%` }}
+                    />
+
+                </div>
             </div>
         </div>
     )
