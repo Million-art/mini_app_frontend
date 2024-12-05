@@ -9,7 +9,7 @@ const Referrals = () => {
     userImage: string;
   };
 
-  let referrals: User[] = [
+  const referrals: User[] = [
     {
       id: 1,
       balance: 1250.75,

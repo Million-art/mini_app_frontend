@@ -272,6 +272,7 @@ import Daily from "@/screens/Daily";
 import Earn from "@/screens/Earn";
 import Home from "@/screens/Home";
 import Referrals from "@/screens/Referrals";
+import Loading from "@/components/Loading";
 
 // Redux Slices
 // import { AppDispatch, RootState } from "@/store/store"; // Add RootState and AppDispatch types
