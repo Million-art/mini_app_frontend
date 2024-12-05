@@ -2,7 +2,7 @@ import { RootState } from '@/store/store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type TUserSlice = {
-    value:null | string
+    value:null | unknown
 }
 
 const initialState: TUserSlice = {
@@ -13,7 +13,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-     setUser: (state, action: PayloadAction<string>) => {
+     setUser: (state, action: PayloadAction<unknown>) => {
       state.value = action.payload;// Assuming that if we have user data, the user is logged in
     },
   }

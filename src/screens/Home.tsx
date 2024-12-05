@@ -1,7 +1,10 @@
+import UserRank from "@/components/UserRank"
 
 const Home = () => {
     return (
-        <div className="text-[5rem]">Home</div>
+        <div className="flex flex-col h-screen relative">
+            <UserRank />
+        </div>
     )
 }
 
