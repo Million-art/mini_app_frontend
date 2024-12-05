@@ -10,6 +10,9 @@ const __dirname = path.dirname(__filename);
 // Export the Vite configuration using TypeScript
 export default defineConfig({
   plugins: [react()],
+  build: {
+    minify: 'esbuild',
+},
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),
