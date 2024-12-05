@@ -6,14 +6,12 @@ import { useLocation, useNavigate } from "react-router-dom"
 const BottomNav = () => {
     const location = useLocation();
     const [currentScreen, setCurrentScreen] = useState('/')
-    const navigate = useNavigate();
-
     useEffect(() => {
         setCurrentScreen(location.pathname)
     }, [location])
     return (
         <div>
-            <nav className="fixed px-[6px] min-w-[90%] text-white bottom-2 left-4 rounded-lg bg-black flex justify-around items-center h-[4.5rem] z-50">
+            <nav className="fixed px-[6px] min-w-[90%] transform text-white bottom-2 left-4 rounded-lg bg-black flex justify-around items-center h-[4.5rem] z-50">
                 <Btn children={<MdHomeFilled />} label="Home" currentScreen={currentScreen} url="/" />
                 <Btn children={<FaMoneyBillAlt />} label="Earn" currentScreen={currentScreen} url="/earn" />
                 <Btn children={<FaUsers />} label="Referrals" currentScreen={currentScreen} url="/referrals" />
