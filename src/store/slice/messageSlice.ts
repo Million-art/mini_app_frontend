@@ -2,7 +2,7 @@ import { RootState } from '@/store/store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type TMessageSlice = {
-    value:null | string
+    value: null | unknown
 }
 
 const initialState: TMessageSlice = {
@@ -13,7 +13,7 @@ const messageSlice = createSlice({
   name: 'message',
   initialState,
   reducers: {
-    setShowMessage: (state, action: PayloadAction<string>) => {
+    setShowMessage: (state, action: PayloadAction<unknown>) => {
       state.value = action.payload;// Assuming that if we have user data, the user is logged in
     },
   }
