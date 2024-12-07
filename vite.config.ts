@@ -11,8 +11,8 @@ const __dirname = path.dirname(__filename);
 export default defineConfig({
   plugins: [react()],
   build: {
-    minify: 'esbuild',
-},
+    outDir: "dist", // Ensure this is 'dist' to match Netlify's publish folder
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "src"),

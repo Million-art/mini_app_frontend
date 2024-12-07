@@ -1,6 +1,6 @@
 [build]
-  # Directory where your build output is located (for example, for create-react-app, it's typically 'build')
-  publish = "build"
+  # Directory where your build output is located
+  publish = "dist"
 
   # Command to build your site
   command = "npm run build"
