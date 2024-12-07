@@ -520,7 +520,7 @@ function App() {
         <Route path="/referrals" element={<Referrals />} />
         <Route path="/earn" element={<Earn />} />
         <Route path="/daily" element={<Daily />} />
-        <Route path="/aridrops" element={<AirDrops />} />
+        <Route path="/airdrops" element={<AirDrops />} />
         {/* {user && calculate && <Route path="/referrals" element={<Referrals />} />}
         {user && calculate && <Route path="/earn" element={<Earn />} />}
         {user && calculate && <Route path="/daily" element={<Daily />} />}
