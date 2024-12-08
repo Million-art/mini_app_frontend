@@ -37,7 +37,7 @@ const UserRank = () => {
             </div>
             <div className="ml-4 w-full">
                 <h1 className="text-white text-lg font-semibold">
-                    Welcome, {firstName}!
+                    Welcome, {firstName}
                 </h1>
                 <p className="text-sm mb-2 tracking-wider text-gray-300">
                     Your rank: {user.rank} of {user.maxRank}
