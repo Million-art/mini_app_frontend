@@ -1,0 +1,241 @@
+import { FaCalendarCheck } from "react-icons/fa"
+import React, {useState, useEffect, useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
+
+import {selectUser} from "/features/userSlice";
+
+import {
+    doc,
+    getDoc, 
+    serverTimestamp,  
+    Timestamp,
+    updateDoc,
+} from "firebase/firestore";
+
+import {db} from "../firebase";
+import daily from "/assets/daily.png";
+import {setChatMessage} from "../features/messageSlice";
+import {setCoinShow} from "/features/coinShowSlice";
+
+const Daily = () => {
+  const isClaimed = false;
+  const claimdisabled = false;
+
+  const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+const user = useSelector(selectUser);
+const [claimAmount, setClaimAmount] = useState(10);
+const [claimDay, setClaimDay] = useState(1);
+const [isClaimed, setIsClaimed] = useState(false);
+const [claimDisabled, setClaimDisabled] = useState(false);
+
+const formatNumber = (num) => {
+  // Convert the number to a string with a fixed number of decimal places
+  let numStr = num.toFixed(3);
+
+  // Split the number into integer and decimal parts
+  let [intPart, decPart] = numStr.split(".");
+
+  // Add thousand separators to the integer part
+  intPart = intPart.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+  // If the number is less than 0.01, keep 3 decimal places
+  if (num < 0.01) {
+    return `${intPart},${decPart}`;
+  }
+
+  // For other numbers, keep 2 decimal places
+  decPart = decPart.slice(0, 2);
+
+  // Always return the formatted number with 2 decimal places
+  return `${intPart}, ${decPart}`;
+};
+
+const calculateClaimAmount = useCallback(async () => {
+  if (!user?.daily?.claimedTime) {
+    // Handle case when claimedTime is not available
+    setIsClaimed(false);
+    setClaimDay(1);
+    setClaimAmount(10); // Default amount for the first day
+    return;
+  }
+
+  // Convert claimedTime to Date object
+  const lastClaimTime =
+    user.daily.claimedTime instanceof Timestamp
+      ? user.daily.claimedTime.toDate()
+      : new Date(user.daily.claimedTime);
+
+  const now = Timestamp.now().toDate();
+  const hoursDiff = (now - lastClaimTime) / (1000 * 3600); // Difference in hours
+
+  if (hoursDiff < 24) {
+    // User has already claimed within 24 hours
+    setIsClaimed(true);
+    setClaimDay(user.daily.claimedDay);
+    return;
+  }
+
+  if (hoursDiff >= 48) {
+    // User skipped a day
+    if (!claimDisabled) {
+      dispatch(
+        setShowMessage({
+          message: "You skipped one day",
+          color: "red",
+        })
+      );
+    }
+    setIsClaimed(false);
+    setClaimDay(1);
+    setClaimAmount(10); // Reset claim amount to default
+    return;
+  }
+
+  // Regular daily claim
+  setIsClaimed(false);
+  const newDay = user.daily.claimedDay + 1;
+  setClaimDay(newDay);
+
+  if (newDay <= 10) {
+    // Calculate claim amount using exponential growth for days 1 to 10
+    setClaimAmount(10 * Math.pow(2, newDay - 1));
+  } else {
+    // Maximum claim amount for days greater than 10
+    setClaimAmount(10000);
+  }
+}, [user, dispatch, claimDisabled]);
+
+const handleClaim = async () => {
+  try {
+    setClaimDisabled(true);
+    dispatch(
+      setShowMessage({
+        message: "Claiming daily rewards...",
+        color: "green",
+      })
+    );
+  } catch (error) {
+    console.error("Error claiming reward:", error);
+  }
+};
+
+const getServerTime = async (db, userId) => {
+  await updateDoc(doc(db, "users", userId), {
+    time: serverTimestamp(),
+  });
+};
+
+const checkTime = async () => {
+  const docSnap = await getDoc(doc(db, "users", userId));
+  const serverTime = docSnap.data()?.time;
+  if (serverTime) {
+    return serverTime;
+  } else {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(checkTime()), 1000);
+    });
+  }
+};
+
+return checkTime();
+//usage
+const serverNow = await getServerTime(db,user.uid)
+const lastClaimTime = 
+user.daily.claimedTime instanceof Timestamp
+? user.daily.claimedTime.toDate()
+:new Date(user.daily.claimedTime)
+const now = serverNow.toDate()
+
+const hoursDiff = (now - lastClaimTime) / (1000 * 3600);
+
+if (!user?.daily?.claimedTime || hoursDiff > 24) {
+  let claimAmountX = claimAmount;
+  let claimDayX = claimDay
+  if(user?.daily?.claimedTime && hoursDiff > 48){
+    setClaimDay(1)
+    setClaimAmount(10)
+    claimAmountX = 10
+    claimDayX = 1
+
+    dispatch(
+      setShowMessage({
+        message: "😒You skipped one day",
+        color: "red",
+      })
+    )
+  }
+  setIsClaimed(true)
+ dispatch(setCoinShow(true))
+ const userRef = doc(db,"users", user.uid)
+  await updateDoc(userRef, {
+    daily: {
+      claimedTime: serverTimestamp(),
+      claimedDay: claimDayX,
+    },
+  })
+  setClaimDisabled(false)
+  }
+  else{
+    dispatch(
+      setShowMessage({
+        message: "Error plase try again",
+        color: "red",
+      })
+    )
+  }catch(error){
+    console.error("Error claiming daily claim:", error);
+    setIsClaimed(false)
+    dispatch(
+      setShowMessage({
+        message: "Error plase try again",
+        color: "red",
+      })
+    )
+    dispatch(setCoinShow(false))
+    setClaimDisabled(false)
+  }
+  // return;
+}
+
+useEffect(()=>{
+  calculateClaimAmount()
+ },[calculateClaimAmount])
+ 
+  return (
+    <div className="text-white">
+      <div className="flex items-center justify-center py-10">
+        <div className="rounded-full p-4">
+          <FaCalendarCheck className="w-28 h-28 object-contain text-cyan-500" />
+        </div>
+      </div>
+      <p className="text-center font-bold text-3xl">Daily rewards</p>
+      <p className="text-center text-lg mt-2">
+        Here you can claim your daily rewards
+      </p>
+      <p className="text-center text-xl font-bold mt-4 ">(Day 3)</p>
+      <div className="mx-10 mt-20">
+        {
+          isClaimed ? (
+            <button
+              disabled
+              className="w-full bg-gray-500 text-white font-bold py-2 rounded cursor-not-allowed"
+            >
+              Claimed for today
+            </button>
+          ) : (
+            <button
+              disabled
+              className={`w-full ${claimdisabled ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-700"} text-white font-bold py-2 rounded`}
+            >
+              Claim $ 10,000
+            </button>
+          )
+        }
+      </div>
+    </div>
+  )
+}
+
+export default Daily

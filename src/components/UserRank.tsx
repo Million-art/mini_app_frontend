@@ -1,13 +1,6 @@
-import { retrieveLaunchParams } from '@telegram-apps/sdk';
+import { firstName } from "@/libs/telegram";
 
-
-const { initData } = retrieveLaunchParams();
-export const telegramId = initData?.user?.id;
-export const userName = initData?.user?.username;
-export const firstName = initData?.user?.firstName || "User";
-export const lastName = initData?.user?.lastName || "";
-export const referredBy = initData?.startParam;
-
+ 
 const UserRank = () => {
     const user = {
         userImage: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=880&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -37,7 +30,7 @@ const UserRank = () => {
             </div>
             <div className="ml-4 w-full">
                 <h1 className="text-white text-lg font-semibold">
-                    Welcome, {firstName}
+                    {`Welcome, ${firstName} `}
                 </h1>
                 <p className="text-sm mb-2 tracking-wider text-gray-300">
                     Your rank: {user.rank} of {user.maxRank}

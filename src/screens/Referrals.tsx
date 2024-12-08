@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { FaGift } from "react-icons/fa"
+import { FaCopy } from 'react-icons/fa'; // Import copy icon
+import { telegramId } from "@/libs/telegram";
 
 const Referrals = () => {
   type User = {
@@ -46,8 +49,17 @@ const Referrals = () => {
       userImage: "https://source.unsplash.com/random/200x200/?portrait,man",
     },
   ];
+  const invitationLink = `https://t.me/@john_sart_bot/Mella?startapp=ref_${telegramId}`;
+  const [isCopied, setIsCopied] = useState(false);
 
 
+  // Function to copy the invitation link to the clipboard
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(invitationLink).then(() => {
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000); // Reset after 2 seconds
+    });
+  };
   return (
     <div className="text-white mb-24">
       <p className="mt-4 text-center font-bold text-4xl">Invite friends</p>
@@ -79,14 +91,16 @@ const Referrals = () => {
             <p
               className="bg-gray-700 rounded-md py-1 px-2 break-words h-full"
             >
-              https://t.me/bot?user=09ed09kdlld34z9
+              {invitationLink}
             </p>
           </div>
           <div className="flex-shrink-0 flex flex-col justify-between">
             <button
               className="bg-blue-500 mb-2 hover:bg-blue-700 text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+              onClick={copyToClipboard}
             >
-              Copy
+                <FaCopy size={16} />
+                {isCopied ? ' Copied!' : ' Copy'}
             </button>
             <button
               className="bg-blue-500 mb-2 hover:bg-blue-700 text-white text-sm font-bold p-2 rounded whitespace-nowrap"
