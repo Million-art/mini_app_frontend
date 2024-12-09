@@ -1,24 +1,34 @@
 import { RootState } from '@/store/store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+// Define user object type
+export type TUser = {
+  id: string;
+  balance: number;
+  userImage: string;
+  firstName: string;
+  lastName: string;
+};
+
+// Define slice state
 export type TTopUsersSlice = {
-    value:null | string[]
-}
+  value: TUser[] | null;  
+};
 
 const initialState: TTopUsersSlice = {
-    value: []
+  value: [],
 };
 
 const topUsersSlice = createSlice({
   name: 'topUsers',
   initialState,
   reducers: {
-    setTopUsers: (state, action: PayloadAction<string[]>) => {
-      state.value = action.payload;// Assuming that if we have user data, the user is logged in
+    setTopUsers: (state, action: PayloadAction<TUser[]>) => {
+      state.value = action.payload;  
     },
-  }
+  },
 });
 
-export const selectTopUsers = (state: RootState) => state.topUsers;
-export const {setTopUsers } = topUsersSlice.actions;
+export const selectTopUsers = (state: RootState) => state.topUsers.value;
+export const { setTopUsers } = topUsersSlice.actions;
 export default topUsersSlice.reducer;

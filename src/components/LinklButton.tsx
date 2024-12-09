@@ -1,16 +1,7 @@
 import { FaCheck, FaTelegram, FaUsers, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
-interface LinklButtonProps {
-  image: string;
-  name: string;
-  amount: number;
-  link?: string;
-  isClicked: boolean;
-  checking: boolean;
-  isClaimed: boolean;
-  canClaim: boolean;
-}
+
 
 const LinklButton: React.FC<LinklButtonProps> = ({
   image,
