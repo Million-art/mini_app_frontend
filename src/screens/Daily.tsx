@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FaCalendarCheck } from "react-icons/fa";
-import { doc, updateDoc, serverTimestamp, Timestamp } from "firebase/firestore";
-
-import { db } from "../firebase"; // Ensure correct Firebase initialization.
+// import { doc, updateDoc, serverTimestamp, Timestamp } from "firebase/firestore";
+// import { db } from "../firebase";  
 import { selectUser } from "../store/slice/userSlice";
 import { setShowMessage } from "../store/slice/messageSlice";
 import { setCoinShow } from "../store/slice/coinShowSlice";
