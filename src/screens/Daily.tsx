@@ -78,13 +78,13 @@ const Daily: React.FC<DailyProps> = () => {
         })
       );
 
-      const userRef = doc(db, "users", user.uid);
-      await updateDoc(userRef, {
-        daily: {
-          claimedTime: serverTimestamp(),
-          claimedDay: claimDay,
-        },
-      });
+      // const userRef = doc(db, "users", user?.uid);
+      // await updateDoc(userRef, {
+      //   daily: {
+      //     claimedTime: serverTimestamp(),
+      //     claimedDay: claimDay,
+      //   },
+      // });
 
       dispatch(setCoinShow(true));
       setIsClaimed(true);

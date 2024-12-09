@@ -2,54 +2,13 @@ import { useState } from "react";
 import { FaGift } from "react-icons/fa"
 import { FaCopy } from 'react-icons/fa'; // Import copy icon
 import { telegramId } from "@/libs/telegram";
+import { User } from "@/interface/User";
 
 const Referrals = () => {
-  type User = {
-    id: number;
-    balance: number;
-    firstName: string;
-    lastName: string;
-    userImage: string;
-  };
 
-  const referrals: User[] = [
-    {
-      id: 1,
-      balance: 1250.75,
-      firstName: "John",
-      lastName: "Doe",
-      userImage: "https://source.unsplash.com/random/200x200/?face,portrait",
-    },
-    {
-      id: 2,
-      balance: 890.4,
-      firstName: "Jane",
-      lastName: "Smith",
-      userImage: "https://source.unsplash.com/random/200x200/?face,female",
-    },
-    {
-      id: 3,
-      balance: 2045.32,
-      firstName: "Chris",
-      lastName: "Brown",
-      userImage: "https://source.unsplash.com/random/200x200/?face,male",
-    },
-    {
-      id: 4,
-      balance: 305.67,
-      firstName: "Emily",
-      lastName: "Johnson",
-      userImage: "https://source.unsplash.com/random/200x200/?portrait,woman",
-    },
-    {
-      id: 5,
-      balance: 1520.0,
-      firstName: "Michael",
-      lastName: "Williams",
-      userImage: "https://source.unsplash.com/random/200x200/?portrait,man",
-    },
-  ];
-  const invitationLink = `https://t.me/@john_sart_bot/Mella?startapp=ref_${telegramId}`;
+
+  const referrals: User[] =  []
+  const invitationLink = `https://t.me/@john_sart_bot?start=ref_${telegramId}`;
   const [isCopied, setIsCopied] = useState(false);
 
 
