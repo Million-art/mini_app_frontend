@@ -32,7 +32,7 @@ const Liders = () => {
                 const usersData: TopUser[] = querySnapshot.docs.map(doc => {
                     const data = doc.data(); // Get the document data
                     return {
-                        id: doc.id,  // Firestore document ID
+                        id: doc.id,  
                         balance: data.balance || 0,   
                         firstName: data.firstName || "Unknown",   
                         lastName: data.lastName || " ",  

@@ -3,8 +3,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from "react-redux";
+
+// Firebase Firestore
 import { collection, doc, getDocs, onSnapshot, query, orderBy, limit, setDoc } from "firebase/firestore";
-import { db } from "./firebase"; // Ensure correct path
+import { db } from "./firebase";  
 
 // Components
 import BottomNav from "@/components/BottomNav";
@@ -14,7 +16,7 @@ import Loading from "@/components/Loading";
 import Home from "@/screens/Home";
 import Referrals from "@/screens/Referrals";
 import Earn from "@/screens/Earn";
-// import Daily from "@/screens/Daily";
+import Daily from "@/screens/Daily";
 import AirDrops from "@/screens/AirDrops";
 
 // Redux Actions and Selectors
@@ -23,7 +25,7 @@ import { setUser } from "./store/slice/userSlice";
 import { setShowMessage, selectShowMessage } from "./store/slice/messageSlice";
 import { selectUser } from "./store/slice/userSlice";
 import { selectCalculate } from "./store/slice/calculateSlice";
-import { AppDispatch, RootState } from "./store/store"; // Adjust paths
+import { AppDispatch, RootState } from "./store/store";  
 
 //telegram user import
 import { telegramId } from "./libs/telegram";
@@ -31,8 +33,7 @@ import { userName } from "./libs/telegram";
 import { firstName } from "./libs/telegram";
 import { lastName } from "./libs/telegram";
 import { languageCode } from "./libs/telegram";
-// import { WebAppState } from "./interface/WebAppState"; // Define this type if not defined
-
+ 
 function App() {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -40,14 +41,9 @@ function App() {
   const user = useSelector((state: RootState) => selectUser(state));
   const calculate = useSelector((state: RootState) => selectCalculate(state));
   const message = useSelector((state: RootState) => selectShowMessage(state));
-
-  // State
-  // const [webApp, setWebApp] = useState<WebAppState | null>(null);
-
+ 
   // Fetch user data from Firestore
   useEffect(() => {
-    // if (!webApp) return;
-
     const getUser = () => {
        
       const unSub = onSnapshot(doc(db, "users", String(telegramId)), async (docSnap) => {
@@ -169,7 +165,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/referrals" element={<Referrals />} />
         <Route path="/earn" element={<Earn />} />
-        {/* <Route path="/daily" element={<Daily />} /> */}
+        <Route path="/daily" element={<Daily />} />
         <Route path="/airdrops" element={<AirDrops />} />
       </Routes>
     </BrowserRouter>

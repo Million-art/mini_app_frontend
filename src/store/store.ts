@@ -4,7 +4,7 @@ import calculateSlice from '@/store/slice/calculateSlice'
 import coinShowSlice from '@/store/slice/coinShowSlice'
 import messageSlice from '@/store/slice/messageSlice'
 import topUsersSlice from '@/store/slice/topUsersSlice'
-// Define the store with type safety
+
 export const store = configureStore({
     reducer: {
         user: userSlice,
