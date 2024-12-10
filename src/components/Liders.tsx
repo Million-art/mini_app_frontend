@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { db } from "@/firebase"; // Import your Firebase configuration
+import { db } from "@/firebase";  
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 
 // Define the type for the user

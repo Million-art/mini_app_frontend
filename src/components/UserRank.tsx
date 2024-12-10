@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { db } from "@/firebase"; 
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { telegramId } from "@/libs/telegram"; 
+import { telegramId, profilePicture } from "@/libs/telegram"; 
 import Loading from "./Loading";
 interface User {
     id: string;
@@ -85,10 +85,10 @@ const UserRank = () => {
         {/* Profile Picture Section */}
         <div className="z-20">
           <div className="border-4 border-blue-700 flex items-center justify-center rounded-full bg-gray-800 w-16 h-16 overflow-hidden">
-            {user.userImage ? (
+            {user ? (
               <img
                 className="object-cover w-full h-full"
-                src={user.userImage}
+                src={profilePicture}
                 alt={`${user.firstName}'s profile`}
               />
             ) : (
@@ -114,7 +114,7 @@ const UserRank = () => {
           </p>
       
           {/* Progress Bar Section */}
-          <div className="flex items-center">
+          {/* <div className="flex items-center">
             <div className="w-full h-3 bg-gray-700 rounded-full relative overflow-hidden">
               <div
                 className="h-full bg-blue-500 transition-all duration-300 ease-in-out"
@@ -124,7 +124,7 @@ const UserRank = () => {
             <span className="ml-2 text-sm text-gray-300">
               {((user.rank / totalUsers) * 100).toFixed(1)}%
             </span>
-          </div>
+          </div> */}
         </div>
       </div>
       
