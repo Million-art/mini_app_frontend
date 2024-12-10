@@ -74,7 +74,7 @@ const Liders = () => {
                                             alt={firstName.charAt(0).toUpperCase()}
                                         />
                                     ) : (
-                                        <div className="text-xl text-white bg-black w-14 h-14 items-center justify-center">
+                                        <div className="text-xl text-white bg-black w-14 h-14  flex justify-center items-center">
                                         {firstName.charAt(0).toUpperCase()}
                                         </div>
                                     )}
