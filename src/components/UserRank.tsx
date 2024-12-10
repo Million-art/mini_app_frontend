@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { db } from "@/firebase"; // Import your Firestore instance
+import { db } from "@/firebase"; 
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
-import { telegramId } from "@/libs/telegram"; // Assuming you have these values available
+import { telegramId, profilePicture } from "@/libs/telegram"; 
 import Loading from "./Loading";
 interface User {
     id: string;
@@ -9,14 +9,14 @@ interface User {
     firstName: string;
     lastName: string;
     userImage: string | null;
-    rank?: number; // Optional, since rank is calculated
+    rank?: number;  
 }
 
 const UserRank = () => {
-    const id = String(telegramId);  // Get the telegramId, ensure it's a string
-    const [user, setUser] = useState<any>(null);  // Use state to store user data
-    const [totalUsers, setTotalUsers] = useState(0);  // State to store the total number of users
-    const [loading, setLoading] = useState(true);  // Loading state to handle the UI while fetching data
+    const id = String(telegramId);  
+    const [user, setUser] = useState<any>(null);  
+    const [totalUsers, setTotalUsers] = useState(0);   
+    const [loading, setLoading] = useState(true);   
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -30,7 +30,7 @@ const UserRank = () => {
                     const data = doc.data();
                     usersList.push({
                         id: doc.id,
-                        balance: data.balance || 0,  // Ensure the balance is available
+                        balance: data.balance || 0,  
                         firstName: data.firstName,
                         lastName: data.lastName,
                         userImage: data.userImage,
@@ -48,7 +48,7 @@ const UserRank = () => {
                 const rank = currentUserIndex + 1;  // Rank is index + 1
 
                 // Find the specific user document using telegramId (id)
-                const userRef = doc(db, "users", id);  // Assuming users collection stores the telegramId as the document ID
+                const userRef = doc(db, "users", id);   // id is the user telegram id
                 const userSnap = await getDoc(userRef);
 
                 if (userSnap.exists()) {
@@ -70,10 +70,10 @@ const UserRank = () => {
         };
 
         fetchUserData();
-    }, [id]);  // Re-run the effect if the id changes
+    }, [id]);   
 
     if (loading) {
-        return  <Loading />  // Show a loading message while data is being fetched
+        return  <Loading />  
     }
 
     if (!user) {
@@ -81,42 +81,53 @@ const UserRank = () => {
     }
 
     return (
-        <div className="flex items-center mx-4 mt-6 bg-gray-900 p-4 rounded-lg shadow-lg">
-            <div className="z-20">
-                <div className="border-4 border-blue-700 flex items-center justify-center rounded-full bg-gray-800 w-14 h-14 overflow-hidden">
-                    {user.userImage ? (
-                        <img
-                            className="object-cover w-full h-full"
-                            src={user.userImage}
-                            alt={`${user.firstName}'s profile`}
-                        />
-                    ) : (
-                        <div className="text-2xl text-white bg-black w-14 h-14 flex items-center justify-center">
-                            {user.firstName.charAt(0).toUpperCase()}
-                        </div>
-                    )}
-                </div>
-            </div>
-            <div className="ml-4 w-full">
-                <h1 className="text-white text-lg font-semibold">
-                    {`Welcome, ${user.firstName}`}  {/* Use the first name from Firestore */}
-                </h1>
-                <p className="text-sm mb-2 tracking-wider text-gray-300">
-                    Your rank: {user.rank} of {totalUsers}  {/* Display rank and total users */}
-                </p>
-                <div className="flex items-center">
-                    <div className="w-full h-3 bg-gray-700 rounded-full relative overflow-hidden">
-                        <div
-                            className="h-full bg-blue-500 transition-all duration-300 ease-in-out"
-                            style={{ width: `${(user.rank / totalUsers) * 100}%` }}  // Progress bar based on rank
-                        />
-                    </div>
-                    <span className="ml-2 text-sm text-gray-300">
-                        {((user.rank / totalUsers) * 100).toFixed(1)}%
-                    </span>
-                </div>
-            </div>
+        <div className="flex items-center  mt-6 bg-gray-900 p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+        {/* Profile Picture Section */}
+        <div className="z-20">
+          <div className="border-4 border-blue-700 flex items-center justify-center rounded-full bg-gray-800 w-16 h-16 overflow-hidden">
+            {user ? (
+              <img
+                className="object-cover w-full h-full"
+                src={profilePicture}
+                alt={`${user.firstName}'s profile`}
+              />
+            ) : (
+              <div className="text-2xl text-white bg-black w-16 h-16 flex items-center justify-center">
+                {user.firstName.charAt(0).toUpperCase()}
+              </div>
+            )}
+          </div>
         </div>
+      
+        {/* User Info Section */}
+        <div className="ml-4 w-full">
+          <div className="mb-3">
+            <h1 className="text-white text-2xl font-semibold">
+              {`Welcome, ${user.firstName}`}   
+            </h1>
+            <p className="text-gray-400 text-sm mt-1">{`Balance: ${user.balance}$`}</p>
+          </div>
+      
+          {/* Rank Section */}
+          <p className="text-sm mb-4 tracking-wider text-gray-300">
+            Your rank: {user.rank} of {totalUsers}
+          </p>
+      
+          {/* Progress Bar Section */}
+          {/* <div className="flex items-center">
+            <div className="w-full h-3 bg-gray-700 rounded-full relative overflow-hidden">
+              <div
+                className="h-full bg-blue-500 transition-all duration-300 ease-in-out"
+                style={{ width: `${(user.rank / totalUsers) * 100}%` }}  // Progress bar based on rank
+              />
+            </div>
+            <span className="ml-2 text-sm text-gray-300">
+              {((user.rank / totalUsers) * 100).toFixed(1)}%
+            </span>
+          </div> */}
+        </div>
+      </div>
+      
     );
 };
 

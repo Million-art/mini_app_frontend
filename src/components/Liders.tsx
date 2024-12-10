@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { db } from "@/firebase"; // Import your Firebase configuration
+import { db } from "@/firebase";  
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
 
 // Define the type for the user
@@ -32,7 +32,7 @@ const Liders = () => {
                 const usersData: TopUser[] = querySnapshot.docs.map(doc => {
                     const data = doc.data(); // Get the document data
                     return {
-                        id: doc.id,  // Firestore document ID
+                        id: doc.id,  
                         balance: data.balance || 0,   
                         firstName: data.firstName || "Unknown",   
                         lastName: data.lastName || " ",  
@@ -71,11 +71,11 @@ const Liders = () => {
                                         <img
                                             className="w-9 h-9 object-contain"
                                             src={userImage}
-                                            alt={firstName}
+                                            alt={firstName.charAt(0).toUpperCase()}
                                         />
                                     ) : (
-                                        <div className="text-xl text-white bg-black w-14 h-14 items-center justify-center">
-                                            {firstName}
+                                        <div className="text-xl text-white bg-black w-14 h-14  flex justify-center items-center">
+                                        {firstName.charAt(0).toUpperCase()}
                                         </div>
                                     )}
                                 </div>

@@ -1,11 +1,10 @@
 import { RootState } from '@/store/store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-// Define the structure of the user object
-export type TUser = {
+ export type TUser = {
   uid: string;  
    daily?: {
-    claimedTime: Date | null; // `null` or a `Date` instance for last claim time
+    claimedTime: Date | null;  
     claimedDay: number; // The current claim day
   };
   [key: string]: any; // For any additional dynamic fields

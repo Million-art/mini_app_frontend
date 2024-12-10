@@ -1,8 +1,7 @@
 import { RootState } from '@/store/store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-// Define the structure of the message object
-export type TMessage = {
+ export type TMessage = {
   message: string; 
   color: string;  
 };

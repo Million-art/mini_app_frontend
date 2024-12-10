@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { FaGift } from "react-icons/fa";
-import { FaCopy } from "react-icons/fa"; // Import copy icon
+import { FaCopy } from "react-icons/fa"; 
 import { telegramId } from "@/libs/telegram";
 import { User } from "@/interface/User";
 import { db } from "@/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore"; // Firestore imports
+import { collection, query, where, getDocs } from "firebase/firestore";  
 
 const Referrals = () => {
-  const [referrals, setReferrals] = useState<User[]>([]); // State for referrals
+  const [referrals, setReferrals] = useState<User[]>([]);  
   const [isCopied, setIsCopied] = useState(false);
   const id = String(telegramId)
   const invitationLink = `https://t.me/john_sart_bot?start=ref_${id}`;
@@ -27,8 +27,7 @@ const Referrals = () => {
           referredUsers.push({ ...doc.data(), id: doc.id } as User);  
         });
   
-        // Update state with the referred users
-        setReferrals(referredUsers);
+         setReferrals(referredUsers);
       } catch (error) {
         console.error("Error fetching referrals: ", error);
       }

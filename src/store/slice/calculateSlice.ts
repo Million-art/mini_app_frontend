@@ -14,7 +14,7 @@ const calculateSlice = createSlice({
   initialState,
   reducers: {
     setCalculate: (state, action: PayloadAction<string>) => {
-      state.value = action.payload;// Assuming that if we have user data, the user is logged in
+      state.value = action.payload;  
     },
   }
 });
