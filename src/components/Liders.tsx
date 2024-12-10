@@ -71,11 +71,11 @@ const Liders = () => {
                                         <img
                                             className="w-9 h-9 object-contain"
                                             src={userImage}
-                                            alt={firstName}
+                                            alt={firstName.charAt(0).toUpperCase()}
                                         />
                                     ) : (
                                         <div className="text-xl text-white bg-black w-14 h-14 items-center justify-center">
-                                            {firstName}
+                                        {firstName.charAt(0).toUpperCase()}
                                         </div>
                                     )}
                                 </div>
