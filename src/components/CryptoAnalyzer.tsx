@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-
+import chart from "../assets/OIP (2).jpg"
 const CryptoAnalyzer: React.FC = () => {
   const [symbol, setSymbol] = useState<string>("");
   const [timeframe, setTimeframe] = useState<string>("1 Hour");
+  const [showPopup, setShowPopup] = useState<boolean>(false);
 
   const handleAnalyze = (event: React.FormEvent) => {
     event.preventDefault();
      console.log("Analyzing:", { symbol, timeframe });
+     setShowPopup(true); 
+
+  };
+
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -32,7 +39,7 @@ const CryptoAnalyzer: React.FC = () => {
             value={symbol}
             onChange={(e) => setSymbol(e.target.value)}
             placeholder="Enter symbol"
-            className=" px-4 py-2 border rounded-md focus:ring text-black focus:ring-blue-300 focus:outline-none"
+            className=" px-4 w-48 py-2 border rounded-md focus:ring text-black focus:ring-blue-300 focus:outline-none"
             required
           />
         </div>
@@ -63,6 +70,27 @@ const CryptoAnalyzer: React.FC = () => {
           Analyze →
         </button>
       </form>
+        {/* Popup for displaying mock analysis */}
+        {showPopup && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
+          <div className="bg-gray-800 text-white rounded-lg shadow-lg p-6 w-96">
+            <img src={chart} alt="" className="w-full h-36 " />
+            <h3 className="text-lg font-semibold text-center mb-4">RSR /USDT Long 📈</h3>
+            <p className="text-sm mb-2">Entry: $0.0175 / $0.0165</p>
+            <p className="text-sm mb-2">TP 1: $0.0183</p>
+            <p className="text-sm mb-2">TP 2: $0.0196</p>
+            <p className="text-sm mb-2">TP 3: $0.0210</p>
+            <p className="text-sm mb-2">Leverage: 20X</p>
+            <p className="text-sm mb-4">Using 3% portfolio</p>
+            <button
+              onClick={closePopup}
+              className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
