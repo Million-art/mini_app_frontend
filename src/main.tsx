@@ -11,8 +11,8 @@ postEvent('web_app_setup_closing_behavior', { need_confirmation: true });
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <TonConnectUIProvider
-      manifestUrl="https://red-urgent-damselfly-771.mypinata.cloud/files/bafkreifk3ef4hrbgdtrp5zqtqu6ba3yf4chirskvzvbkj3pfqeamrl7q5i?X-Algorithm=PINATA1&X-Date=1733899842&X-Expires=30&X-Method=GET&X-Signature=35e22f6873d02c27c68f580ee2ee5680f85cef643eda405bad0c299e3ca845b9"
-    >
+      manifestUrl="https://red-urgent-damselfly-771.mypinata.cloud/files/bafkreibrlhzl63sgcrjqi6lezasnz7lwi74b4t4qqxlpcuolivh63wuoqu?X-Algorithm=PINATA1&X-Date=1733906861&X-Expires=30&X-Method=GET&X-Signature=d229d01baf8d9c45476b0949e0428a6f0c43821768186c51aef5efae2931c46a"
+      >
       <Provider store={store}>
         <App />
       </Provider>
