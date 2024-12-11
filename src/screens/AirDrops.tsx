@@ -120,7 +120,7 @@ const AirDrops = () => {
 
       {/* Confirmation Modal */}
       {showConfirmModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
           <div className="bg-gray-800 p-6 rounded shadow-lg">
             <p className="mb-4 text-white">Are you sure you want to disconnect your wallet?</p>
             <div className="flex justify-end gap-4">
