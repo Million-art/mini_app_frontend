@@ -1,23 +1,46 @@
 import { FaBitcoin } from "react-icons/fa";
 import { useTonConnectUI } from "@tonconnect/ui-react";
 import { useCallback, useEffect, useState } from "react";
+import { db } from "@/firebase"; 
+import { doc, updateDoc } from "firebase/firestore";
+import { telegramId } from "../libs/telegram";  
 
 const AirDrops = () => {
   const [tonConnectUI] = useTonConnectUI();
   const [tonWalletAddress, setTonWalletAddress] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const tid = String(telegramId)
+  const handleWalletConnection = useCallback(
+    async (address: string) => {
+      setTonWalletAddress(address);
+      console.log("Wallet connected:", address);
+      setIsLoading(false);
 
-  const handleWalletConnection = useCallback((address: string) => {
-    setTonWalletAddress(address);
-    console.log("Wallet connected:", address);
-    setIsLoading(false);
-  }, []);
+      try {
+        const userRef = doc(db, "users", tid); // Use tid to locate the user
+        await updateDoc(userRef, {
+          walletAddress: address, // Update the walletAddress field
+        });
+       } catch (error) {
+        console.error("Error updating wallet address in Firebase:", error);
+      }
+    },
+    []
+  );
 
-  const handleWalletDisconnect = useCallback(() => {
+  const handleWalletDisconnect = useCallback(async () => {
     setTonWalletAddress(null);
-    console.log("Wallet disconnected:");
-    setIsLoading(false);
+     setIsLoading(false);
+
+    try {
+      const userRef = doc(db, "users", tid); // Use tid to locate the user
+      await updateDoc(userRef, {
+        walletAddress: null, // Reset the walletAddress field to "none"
+      });
+     } catch (error) {
+      console.error("Error resetting wallet address in Firebase:", error);
+    }
   }, []);
 
   const handleConfirmDisconnect = async () => {
@@ -29,9 +52,9 @@ const AirDrops = () => {
   useEffect(() => {
     const checkWalletConnection = async () => {
       if (tonConnectUI.account?.address) {
-        handleWalletConnection(tonConnectUI.account.address);
+        await handleWalletConnection(tonConnectUI.account.address);
       } else {
-        handleWalletDisconnect();
+        await handleWalletDisconnect();
       }
     };
 
