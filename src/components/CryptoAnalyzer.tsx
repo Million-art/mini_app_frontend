@@ -82,6 +82,26 @@ const CryptoAnalyzer: React.FC = () => {
             <p className="text-sm mb-2">TP 3: $0.0210</p>
             <p className="text-sm mb-2">Leverage: 20X</p>
             <p className="text-sm mb-4">Using 3% portfolio</p>
+            <h3 className="text-lg font-semibold text-center mb-4">
+              BTCUSDT Spot 📊
+            </h3>
+            <p className="text-sm mb-4 text-center">
+              <span className="font-semibold">Entry Zones</span>
+            </p>
+            <ul className="text-sm mb-4 space-y-2">
+              <li>
+                <span className="font-semibold">1st tranche</span>: 20% of the
+                operative capital — <span className="text-green-400">$89,000</span>
+              </li>
+              <li>
+                <span className="font-semibold">2nd tranche</span>: 30% of the
+                operative capital — <span className="text-green-400">$85,000</span>
+              </li>
+              <li>
+                <span className="font-semibold">3rd tranche</span>: 50% of the
+                operative capital — <span className="text-green-400">$80,000</span>
+              </li>
+            </ul>
             <button
               onClick={closePopup}
               className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300"
