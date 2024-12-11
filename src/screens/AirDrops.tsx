@@ -1,5 +1,4 @@
 import { FaBitcoin } from "react-icons/fa";
-import { TonConnectUIProvider } from "@tonconnect/ui-react";
 import { useTonConnectUI } from "@tonconnect/ui-react";
 import { useCallback, useEffect, useState } from "react";
 
@@ -65,9 +64,7 @@ const AirDrops = () => {
   }
 
   return (
-    <TonConnectUIProvider
-      manifestUrl="https://red-urgent-damselfly-771.mypinata.cloud/files/bafkreifk3ef4hrbgdtrp5zqtqu6ba3yf4chirskvzvbkj3pfqeamrl7q5i?X-Algorithm=PINATA1&X-Date=1733899842&X-Expires=30&X-Method=GET&X-Signature=35e22f6873d02c27c68f580ee2ee5680f85cef643eda405bad0c299e3ca845b9"
-    >
+
       <div className="flex min-h-screen flex-col items-center justify-center">
         <FaBitcoin className="w-28 h-28 object-contain text-cyan-500" />
         {tonWalletAddress ? (
@@ -75,7 +72,7 @@ const AirDrops = () => {
             <p className="mb-4">Connected: {formatAddress(tonWalletAddress)}</p>
             <button
               onClick={handleWalletAction}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Disconnect Wallet
             </button>
@@ -83,16 +80,15 @@ const AirDrops = () => {
         ) : (
           <button
             onClick={handleWalletAction}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 my-5 px-4 rounded"
           >
             Connect Ton Wallet
           </button>
         )}
-        <p className="text-center font-bold text-3xl">AirDrop</p>
-        <p className="text-center text-lg mt-2">Coming very soon!</p>
+        <p className="text-center font-bold text-white text-3xl">AirDrop</p>
+        <p className="text-center text-white text-lg mt-2">Coming very soon!</p>
       </div>
-    </TonConnectUIProvider>
-  );
+   );
 };
 
 export default AirDrops;
