@@ -86,7 +86,7 @@ const AirDrops = () => {
           </button>
         )}
         <p className="text-center font-bold text-white text-3xl">AirDrop</p>
-        <p className="text-center text-white text-lg mt-2">Coming very soon!</p>
+        <p className="text-center text-white text-lg mt-2">Coming very soon!👀</p>
       </div>
    );
 };
