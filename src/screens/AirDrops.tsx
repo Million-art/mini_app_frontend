@@ -69,7 +69,7 @@ const AirDrops = () => {
         <FaBitcoin className="w-28 h-28 object-contain text-cyan-500" />
         {tonWalletAddress ? (
           <div className="flex flex-col items-center">
-            <p className="mb-4">Connected: {formatAddress(tonWalletAddress)}</p>
+            <p className="mb-4 text-white">Connected: <b className="text-blue-500"> {formatAddress(tonWalletAddress)} </b> </p>
             <button
               onClick={handleWalletAction}
               className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
