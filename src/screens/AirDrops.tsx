@@ -72,7 +72,7 @@ const AirDrops = () => {
             <p className="mb-4">Connected: {formatAddress(tonWalletAddress)}</p>
             <button
               onClick={handleWalletAction}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+              className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             >
               Disconnect Wallet
             </button>
