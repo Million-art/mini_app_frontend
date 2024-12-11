@@ -11,7 +11,7 @@ postEvent('web_app_setup_closing_behavior', { need_confirmation: true });
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <TonConnectUIProvider
-      manifestUrl="https://res.cloudinary.com/dd6sildog/raw/upload/v1733909251/tonmanifest_fphiao.json"
+      manifestUrl="https://res.cloudinary.com/dd6sildog/raw/upload/v1733909863/tonmanifest_wjbnog.json"
       >
       <Provider store={store}>
         <App />
