@@ -121,18 +121,18 @@ const AirDrops = () => {
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-blue-950 p-6 rounded shadow-lg">
+          <div className="bg-gray-800 p-6 rounded shadow-lg">
             <p className="mb-4 text-white">Are you sure you want to disconnect your wallet?</p>
             <div className="flex justify-end gap-4">
               <button
                 onClick={() => setShowConfirmModal(false)}
-                className=" text-gray-300 font-thin py-2 px-4 rounded"
+                className=" text-gray-200 font-thin py-2 px-4 rounded"
               >
                 Cancel
               </button>
               <button
                 onClick={handleConfirmDisconnect}
-                className=" text-red-700 font-tin py-2 px-4 rounded"
+                className=" text-red-500 font-tin py-2 px-4 rounded"
               >
                 Disconnect
               </button>
