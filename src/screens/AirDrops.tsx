@@ -80,13 +80,13 @@ const AirDrops = () => {
         ) : (
           <button
             onClick={handleWalletAction}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 my-5 px-4 rounded"
           >
             Connect Ton Wallet
           </button>
         )}
-        <p className="text-center font-bold text-3xl">AirDrop</p>
-        <p className="text-center text-lg mt-2">Coming very soon!</p>
+        <p className="text-center font-bold text-white text-3xl">AirDrop</p>
+        <p className="text-center text-white text-lg mt-2">Coming very soon!</p>
       </div>
    );
 };
