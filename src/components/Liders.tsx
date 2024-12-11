@@ -50,8 +50,9 @@ const Liders = () => {
     }, []);
 
     return (
-        <div className="bg-gray-800 mx-4 mt-6 mb-24 h-60 rounded-lg relative">
-            <div className="h-full overflow-y-auto hide-scrollbar pb-12">
+        <div className="bg-gray-800  mt-6 mb-24 h-60 rounded-lg relative">
+                <h1 className="text-white font-semibold text-2xl mx-4 text-center">Leaders Board</h1>
+            <div className="h-full overflow-y-auto mt-3 hide-scrollbar pb-12">
                 {topUsers.length === 0 ? (
                     <p className="text-white text-center">Loading top users...</p>
                 ) : (

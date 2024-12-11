@@ -81,7 +81,7 @@ const UserRank = () => {
     }
 
     return (
-        <div className="flex items-center  mt-6 bg-gray-900 p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+        <div className="flex items-center   bg-gray-900 p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
         {/* Profile Picture Section */}
         <div className="z-20">
           <div className="border-4 border-blue-700 flex items-center justify-center rounded-full bg-gray-800 w-16 h-16 overflow-hidden">

@@ -1,3 +1,4 @@
+import CryptoAnalyzer from "@/components/CryptoAnalyzer"
 import Liders from "@/components/Liders"
 import UserRank from "@/components/UserRank"
 
@@ -6,8 +7,7 @@ const Home = () => {
         <div className="flex flex-col h-screen relative">
             <div>
                 <UserRank />
-            </div>
-            <div>
+                <CryptoAnalyzer />
                 <Liders />
             </div>
         </div>
