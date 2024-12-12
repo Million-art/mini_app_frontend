@@ -75,13 +75,7 @@ const CryptoAnalyzer: React.FC = () => {
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
           <div className="bg-gray-800 text-white rounded-lg shadow-lg p-6 w-96">
             <img src={chart} alt="" className="w-full h-36 " />
-            <h3 className="text-lg font-semibold text-center mb-4">RSR /USDT Long 📈</h3>
-            <p className="text-sm mb-2">Entry: $0.0175 / $0.0165</p>
-            <p className="text-sm mb-2">TP 1: $0.0183</p>
-            <p className="text-sm mb-2">TP 2: $0.0196</p>
-            <p className="text-sm mb-2">TP 3: $0.0210</p>
-            <p className="text-sm mb-2">Leverage: 20X</p>
-            <p className="text-sm mb-4">Using 3% portfolio</p>
+            
             <h3 className="text-lg font-semibold text-center mb-4">
               BTCUSDT Spot 📊
             </h3>
