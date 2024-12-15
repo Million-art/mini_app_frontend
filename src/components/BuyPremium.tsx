@@ -2,10 +2,13 @@ import { useState } from "react";
 import { telegramId } from "@/libs/telegram";
 import { db } from "@/firebase"; // Firebase instance
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import Confetti from "react-confetti"; // Import Confetti
 
 const BuyPremium = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState(false); // New state for success message
+  const [confetti, setConfetti] = useState(false); // New state for confetti
   const id = String(telegramId);
 
   const handleBuyNow = async () => {
@@ -45,8 +48,15 @@ const BuyPremium = () => {
         "buy_analyzer_tool.lastPurchase": currentTime, // Timestamp of purchase
       });
 
-      // Success message
-      alert("Purchase successful!");
+      // Trigger confetti and display success message
+      setConfetti(true);
+      setSuccessMessage(true);
+
+      // Hide confetti and success message after 3 seconds
+      setTimeout(() => {
+        setConfetti(false);
+        setSuccessMessage(false);
+      }, 3000);
 
     } catch (error) {
       setErrorMessage("An error occurred while processing the request.");
@@ -67,6 +77,14 @@ const BuyPremium = () => {
         {loading ? "Processing..." : "Buy Now (5$/month)"}
       </button>
       {errorMessage && <p className="text-red-500 mt-4">{errorMessage}</p>}
+      
+      {/* Conditionally render confetti */}
+      {confetti && <Confetti />}
+      
+      {/* Success message */}
+      {successMessage && (
+        <p className="text-green-500 mt-4 font-semibold">Successfully Purchased!</p>
+      )}
     </section>
   );
 };
