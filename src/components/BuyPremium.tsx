@@ -1,29 +1,56 @@
 import { useState } from "react";
 import { telegramId } from "@/libs/telegram";
+import { db } from "@/firebase"; // Firebase instance
+import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+
 const BuyPremium = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const id = String(telegramId)
+  const id = String(telegramId);
+
   const handleBuyNow = async () => {
     setLoading(true);
+
     try {
-      const response = await fetch("https://mini-app-backend-two.vercel.app/api/buy_crypto_analyzer", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ user_id: id }),  
+      // Get the user document from Firestore using doc() and getDoc()
+      const userRef = doc(db, "users", id);
+      const userDoc = await getDoc(userRef);
+
+      if (!userDoc.exists()) {
+        setErrorMessage("User not found!");
+        return;
+      }
+
+      const userData = userDoc.data();
+      const balance = userData.balance || 0;
+
+      // Check if the user has enough balance to buy the analyzer tool
+      const price = 5; // $5 for the analyzer
+      if (balance < price) {
+        setErrorMessage("Insufficient balance. Please add funds.");
+        return;
+      }
+
+      // Deduct the balance
+      const newBalance = balance - price;
+
+      // Get current timestamp
+      const currentTime = serverTimestamp();
+
+      // Update Firestore: deduct the amount, and update analyzer tool details using updateDoc()
+      await updateDoc(userRef, {
+        balance: newBalance, // Deduct $5
+        "buy_analyzer_tool.duration": 30, // 30 days duration
+        "buy_analyzer_tool.amount": price, // $5 amount
+        "buy_analyzer_tool.lastPurchase": currentTime, // Timestamp of purchase
       });
 
-      const data = await response.json();
+      // Success message
+      alert("Purchase successful!");
 
-      if (response.ok) {
-        alert("Purchase successful!");  
-      } else {
-        setErrorMessage(data.error || "An error occurred");
-      }
     } catch (error) {
       setErrorMessage("An error occurred while processing the request.");
+      console.error(error);
     } finally {
       setLoading(false);
     }
