@@ -7,7 +7,7 @@ const BuyPremium = () => {
   const handleBuyNow = async () => {
     setLoading(true);
     try {
-      const response = await fetch("/buy_crypto_analyzer", {
+      const response = await fetch("https://mini-app-backend-two.vercel.app/api/buy_crypto_analyzer", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
