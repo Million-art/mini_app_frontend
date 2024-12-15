@@ -164,7 +164,7 @@ function App() {
         <Route path="*" element={<Loading />} />
         <Route path="/" element={<Home />} />
         <Route path="/referrals" element={<Referrals />} />
-        <Route path="/earn" element={<Earn />} />
+         <Route path="/earn" element={<Earn />} />
         <Route path="/daily" element={<Daily />} />
         <Route path="/airdrops" element={<AirDrops />} />
       </Routes>

@@ -10,7 +10,7 @@ const BottomNav = () => {
         setCurrentScreen(location.pathname)
     }, [location])
     return (
-        <div>
+        <footer>
             <nav className="fixed w-[90%] px-[6px] translate-x-[-50%] left-[50%] transform text-white bottom-2  rounded-lg bg-black flex justify-around items-center h-[4.5rem] z-50 gap-4">
                 <Btn children={<MdHomeFilled />} label="Home" currentScreen={currentScreen} url="/" />
                 <Btn children={<FaMoneyBillAlt />} label="Earn" currentScreen={currentScreen} url="/earn" />
@@ -18,7 +18,7 @@ const BottomNav = () => {
                 <Btn children={<FaCalendarCheck />} label="Daily" currentScreen={currentScreen} url="/daily" />
                 <Btn children={<FaBitcoin />} label="AirDrops" currentScreen={currentScreen} url="/airdrops" />
             </nav>
-        </div>
+        </footer>
     )
 }
 

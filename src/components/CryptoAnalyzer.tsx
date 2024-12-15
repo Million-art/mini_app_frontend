@@ -17,7 +17,7 @@ const CryptoAnalyzer: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center   ">
+    <section className="flex justify-center   ">
       <form
         onSubmit={handleAnalyze}
         className="  shadow-md rounded-lg p-6 w-96"
@@ -105,7 +105,7 @@ const CryptoAnalyzer: React.FC = () => {
           </div>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 
