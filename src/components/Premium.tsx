@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { db } from "@/firebase"; // Firebase instance
-import { doc, getDoc } from "firebase/firestore"; // Import necessary Firestore functions
+import { db } from "@/firebase";  
+import { doc, getDoc } from "firebase/firestore";  
 import AddExchange from "./AddExchange";
 import BuyPremium from "./BuyPremium";
 import CryptoAnalyzer from "./CryptoAnalyzer";
@@ -9,11 +9,13 @@ import Loading from "./Loading";
 
 const Premium = () => {
   const [hasPurchased, setHasPurchased] = useState(false);
+  const [hasExchange, setHasExchange] = useState(false);
   const [loading, setLoading] = useState(true);
-  const user_id = String(telegramId)
-  const id = String(user_id); 
+  const user_id = String(telegramId);
+  const id = String(user_id);
+
   useEffect(() => {
-    const checkPurchaseStatus = async () => {
+    const checkUserStatus = async () => {
       try {
         // Fetch user data from Firestore
         const userRef = doc(db, "users", id);
@@ -21,26 +23,32 @@ const Premium = () => {
 
         if (userDoc.exists()) {
           const userData = userDoc.data();
+          
+          // Check if the user has purchased the analyzer tool
           const lastPurchase = userData?.buy_analyzer_tool?.lastPurchase;
-
-          // Check if the user has purchased the analyzer tool (i.e., has a valid last purchase)
           if (lastPurchase) {
             setHasPurchased(true);
           }
+
+          // Check if the user has exchange credentials set
+          const exchangeCredentials = userData?.exchangeCredentials;
+          if (exchangeCredentials?.apiKey && exchangeCredentials?.apiSecret) {
+            setHasExchange(true);
+          }
         }
       } catch (error) {
-        console.error("Error checking purchase status: ", error);
+        console.error("Error checking user status: ", error);
       } finally {
         setLoading(false);
       }
     };
 
-    checkPurchaseStatus();
+    checkUserStatus();
   }, [id]);
 
-  // Show loading message while checking purchase status
+  // Show loading message while checking status
   if (loading) {
-    return <Loading />
+    return <Loading />;
   }
 
   return (
@@ -49,8 +57,11 @@ const Premium = () => {
         <BuyPremium /> // Show BuyPremium if not purchased
       ) : (
         <>
-          <AddExchange />
-          <CryptoAnalyzer />
+          {!hasExchange ? (
+            <AddExchange /> // Show AddExchange if no exchange credentials are present
+          ) : (
+            <CryptoAnalyzer /> // Show CryptoAnalyzer if exchange credentials exist
+          )}
         </>
       )}
     </section>
