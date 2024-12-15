@@ -1,22 +1,81 @@
 import { useState } from "react";
-
+import { db } from "@/firebase";  
+import { doc, getDoc, setDoc } from "firebase/firestore";  
+import Loading from "./Loading";  
+import { telegramId } from "@/libs/telegram"; 
+import CryptoJS from "crypto-js"; 
 const AddExchange = () => {
   const [apiKey, setApiKey] = useState("");
   const [apiSecret, setApiSecret] = useState("");
   const [exchangePlatform, setExchangePlatform] = useState("binance");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [loading, setLoading] = useState(false);  
+  const id = String(telegramId);
+  
+  // Encryption function
+  const encryptCredentials = (apiKey: string, apiSecret: string) => {
+    const secretKey = "fdhdaj14=-+#Q@-secret-key";  
+    const encryptedApiKey = CryptoJS.AES.encrypt(apiKey, secretKey).toString();
+    const encryptedApiSecret = CryptoJS.AES.encrypt(apiSecret, secretKey).toString();
+    return { encryptedApiKey, encryptedApiSecret };
+  };
 
-  const handleSubmit = (e:any) => {
+ 
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    // Logic to handle the submitted API credentials (save them, or use them to connect to the exchange)
-    console.log(`Submitted API Key and Secret for ${exchangePlatform}`);
-    console.log(`API Key: ${apiKey}`);
-    console.log(`API Secret: ${apiSecret}`);
+
+    if (!apiKey || !apiSecret) {
+      setErrorMessage("Both API Key and Secret are required.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const { encryptedApiKey, encryptedApiSecret } = encryptCredentials(apiKey, apiSecret);
+
+      const userDocRef = doc(db, "users", id);  
+      const userDoc = await getDoc(userDocRef);
+
+      if (userDoc.exists()) {
+        const userData = userDoc.data();
+        
+        // Set the encrypted exchange credentials in the user's document
+        await setDoc(userDocRef, {
+          ...userData,  
+          exchangeCredentials: {
+            platform: exchangePlatform,
+            apiKey: encryptedApiKey,
+            apiSecret: encryptedApiSecret,
+          },
+        }, { merge: true }); 
+
+        setSuccessMessage("API Key and Secret added successfully!");
+        setApiKey("");
+        setApiSecret("");
+      } else {
+        setErrorMessage("User not found.");
+      }
+    } catch (error) {
+      console.error("Error submitting API credentials:", error);
+      setErrorMessage("Failed to save credentials. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-900  text-white flex justify-center   py-10">
-      <div className="  p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-2xl font-bold text-center mb-6">Add Your Exchange API key</h1>
+    <div className="min-h-screen bg-gray-900 text-white flex justify-center py-10">
+      <div className="p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-2xl font-bold text-center mb-6">Add Your Exchange API Key</h1>
+        
+        {/* Loading spinner */}
+        {loading && <Loading />}
+        
+        {/* Error and Success Messages */}
+        {errorMessage && <div className="text-red-500 text-center mb-4">{errorMessage}</div>}
+        {successMessage && <div className="text-green-500 text-center mb-4">{successMessage}</div>}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="exchangePlatform" className="block text-lg font-medium mb-2">

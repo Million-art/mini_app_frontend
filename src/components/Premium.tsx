@@ -5,6 +5,7 @@ import AddExchange from "./AddExchange";
 import BuyPremium from "./BuyPremium";
 import CryptoAnalyzer from "./CryptoAnalyzer";
 import { telegramId } from "@/libs/telegram";
+import Loading from "./Loading";
 
 const Premium = () => {
   const [hasPurchased, setHasPurchased] = useState(false);
@@ -39,7 +40,7 @@ const Premium = () => {
 
   // Show loading message while checking purchase status
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loading />
   }
 
   return (
