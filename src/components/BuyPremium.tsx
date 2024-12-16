@@ -44,17 +44,18 @@ const BuyPremium = () => {
         "buy_analyzer_tool.lastPurchase": serverTimestamp(),
       });
 
-      // Dispatch action to update premium state in Redux
-      dispatch(setHasPurchased(true));
+        // Show confetti and hide "Buy Now" button
+        setShowConfetti(true);
+        setSuccess(true);
+        // Dispatch action to update premium state in Redux
+        dispatch(setHasPurchased(true));
 
-      // Show confetti and hide "Buy Now" button
-      setShowConfetti(true);
-      setSuccess(true);
+   
 
-      // Hide confetti after 3 seconds
-      setTimeout(() => {
-        setShowConfetti(false);
-      }, 3000);
+        // Hide confetti after 3 seconds
+        setTimeout(() => {
+          setShowConfetti(false);
+        }, 3000);
     } catch (error) {
       setErrorMessage("An error occurred while processing the request.");
       console.error(error);
