@@ -4,6 +4,7 @@ import calculateSlice from '@/store/slice/calculateSlice'
 import coinShowSlice from '@/store/slice/coinShowSlice'
 import messageSlice from '@/store/slice/messageSlice'
 import topUsersSlice from '@/store/slice/topUsersSlice'
+import premiumSlice from '@/store/slice/PremiumSlice'
 
 export const store = configureStore({
     reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
         coinShow: coinShowSlice,
         message:messageSlice,
         topUsers:topUsersSlice,
+        premium: premiumSlice,
     },
 });
 
