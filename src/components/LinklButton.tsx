@@ -13,7 +13,7 @@ const LinklButton: React.FC<LinklButtonProps> = ({
   canClaim,
 }) => {
   return (
-    <div className="bg-gray-900 rounded-xl flex items-center p-2 mb-2 cursor-pointer">
+    <div className="  rounded-xl flex items-center p-2 mb-2 cursor-pointer">
       {/* Icon Section */}
       <div className="flex items-center justify-center w-[80px] text-2xl text-white">
         {image === "youtube" ? (
@@ -44,8 +44,7 @@ const LinklButton: React.FC<LinklButtonProps> = ({
                 <FaCheck className="text-green-500" aria-label="Claimed" />
               ) : canClaim ? (
                 <button
-                  // Uncomment and implement claimRewards function as needed
-                  // onClick={claimRewards}
+
                   className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold px-2 py-1 rounded"
                   aria-label="Claim Reward"
                 >

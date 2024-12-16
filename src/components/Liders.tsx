@@ -30,17 +30,17 @@ const Liders = () => {
                 // Execute the query
                 const querySnapshot = await getDocs(q);
                 const usersData: TopUser[] = querySnapshot.docs.map(doc => {
-                    const data = doc.data(); // Get the document data
+                    const data = doc.data(); 
                     return {
                         id: doc.id,  
                         balance: data.balance || 0,   
                         firstName: data.firstName || "Unknown",   
                         lastName: data.lastName || " ",  
-                        userImage: data.userImage,  // Optional field
+                        userImage: data.userImage,   
                     };
                 });
 
-                setTopUsers(usersData);  // Set the top users to state
+                setTopUsers(usersData);  
             } catch (error) {
                 console.error("Error fetching top users:", error);
             }

@@ -37,7 +37,7 @@ const Premium = () => {
           // Check if the user has exchange credentials set
           const exchangeCredentials = userData?.exchangeCredentials;
           if (exchangeCredentials?.apiKey && exchangeCredentials?.apiSecret) {
-            dispatch(setHasExchange(true));
+            dispatch(setHasExchange(true)); // Update Redux store if credentials exist
           }
         }
       } catch (error) {

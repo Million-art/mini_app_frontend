@@ -95,7 +95,7 @@ const Daily: React.FC  = () => {
             claimedTime: serverTimestamp(),
             claimedDay: claimDay,
           },
-          balance: newBalance, // Update the balance
+          balance: newBalance,  
         });
   
         dispatch(setCoinShow(true));

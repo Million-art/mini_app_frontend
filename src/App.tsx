@@ -61,18 +61,14 @@ function App() {
               referredBy: data.referredBy || null,
               isPremium: data.isPremium || false,
               balance: data.balance || 0,
-              mineRate: data.mineRate || 0.001,
-              isMining: data.isMining || false,
-              miningStartedTime: data.miningStartedTime
-                ? data.miningStartedTime.toMillis()
-                : null,
+              
               daily: {
                 claimedTime: data.daily?.claimedTime
                   ? data.daily.claimedTime.toMillis()
                   : null,
                 claimedDay: data.daily?.claimedDay || 0,
               },
-              links:data.links,
+              walletAddress:data.walletAddress,
             })
           );
         } else {
@@ -91,7 +87,7 @@ function App() {
               claimedTime: null,
               claimedDay: 0,
             },
-            links: null,
+            walletAddress: null,
           });
         }
       });

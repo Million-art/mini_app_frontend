@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { telegramId } from "@/libs/telegram";
 import { db } from "@/firebase";
-import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
+import { doc, serverTimestamp, runTransaction } from "firebase/firestore";
 import { setHasPurchased } from "../store/slice/PremiumSlice";
 import Confetti from "react-confetti";
 import { updateUserBalance } from "../store/slice/userSlice";
@@ -10,56 +10,62 @@ import { updateUserBalance } from "../store/slice/userSlice";
 const BuyPremium = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [success, setSuccess] = useState(false); // For hiding the button
-  const [showConfetti, setShowConfetti] = useState(false); // For confetti effect
+  const [success, setSuccess] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const dispatch = useDispatch();
   const id = String(telegramId);
 
   const handleBuyNow = async () => {
     setLoading(true);
+    const price = 5; // $5 for the analyzer tool
 
     try {
-      const userRef = doc(db, "users", id);
-      const userDoc = await getDoc(userRef);
+      await runTransaction(db, async (transaction) => {
+        const userRef = doc(db, "users", id);
+        const userDoc = await transaction.get(userRef);
 
-      if (!userDoc.exists()) {
-        setErrorMessage("User not found!");
-        return;
-      }
+        if (!userDoc.exists()) {
+          throw new Error("User not found!");
+        }
 
-      const userData = userDoc.data();
-      const balance = userData.balance || 0;
-      const price = 5; // $5 for the analyzer tool
+        const userData = userDoc.data();
+        const balance = userData.balance || 0;
 
-      if (balance < price) {
-        setErrorMessage("Insufficient balance. Please add funds.");
-        return;
-      }
-      const newBalance = balance - price;
-      // Deduct balance and update Firestore
-      await updateDoc(userRef, {
-        balance: balance - price,
-        "buy_analyzer_tool.duration": 30, // 30 days duration
-        "buy_analyzer_tool.amount": price,
-        "buy_analyzer_tool.isActive": true,
-        "buy_analyzer_tool.lastPurchase": serverTimestamp(),
+        if (balance < price) {
+          throw new Error("Insufficient balance. Please add funds.");
+        }
+
+        const newBalance = balance - price;
+
+        // Set both timestamps using Firestore's serverTimestamp()
+        const timestamp = serverTimestamp();
+
+        // Update user data within the transaction
+        transaction.update(userRef, {
+          balance: newBalance,
+          "buy_analyzer_tool.duration": 30, // 30 days
+          "buy_analyzer_tool.amount": price,
+          "buy_analyzer_tool.isActive": true,
+          "buy_analyzer_tool.lastPurchase": timestamp, // Use single timestamp variable
+          "buy_analyzer_tool.expirationDate": timestamp, // Use same timestamp
+        });
+
+        // Update Redux state
+        dispatch(updateUserBalance(newBalance));
       });
 
-        dispatch(updateUserBalance(newBalance));
+      // Show confetti and set success state
+      setShowConfetti(true);
+      setSuccess(true);
 
-        // Show confetti and hide "Buy Now" button
-        setShowConfetti(true);
-        setSuccess(true);
-
-        // Hide confetti after 3 seconds
-        setTimeout(() => {
-          setShowConfetti(false);
-          // Dispatch action to update premium state in Redux
-          dispatch(setHasPurchased(true));
-        }, 3000);
-    } catch (error) {
-      setErrorMessage("An error occurred while processing the request.");
-      console.error(error);
+      // Dispatch premium purchase state
+      setTimeout(() => {
+        setShowConfetti(false);
+        dispatch(setHasPurchased(true));
+      }, 3000);
+    } catch (error:any) {
+      console.error("Error during transaction:", error);
+      setErrorMessage(error.message || "An unexpected error occurred.");
     } finally {
       setLoading(false);
     }
