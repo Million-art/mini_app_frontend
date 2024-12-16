@@ -1,10 +1,12 @@
 import { RootState } from '@/store/store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
- export type TUser = {
-  uid: string;  
-   daily?: {
-    claimedTime: Date | null;  
+// Define user type
+export type TUser = {
+  uid: string;
+  balance: number;
+  daily?: {
+    claimedTime: Date | null;
     claimedDay: number; // The current claim day
   };
   [key: string]: any; // For any additional dynamic fields
@@ -32,6 +34,12 @@ const userSlice = createSlice({
     clearUser: (state) => {
       state.value = null;
     },
+    // Action to update user balance
+    updateUserBalance: (state, action: PayloadAction<number>) => {
+      if (state.value) {
+        state.value.balance = action.payload; // Update the balance
+      }
+    },
   },
 });
 
@@ -39,5 +47,5 @@ const userSlice = createSlice({
 export const selectUser = (state: RootState): TUser | null => state.user.value;
 
 // Export actions and reducer
-export const { setUser, clearUser } = userSlice.actions;
+export const { setUser, clearUser, updateUserBalance } = userSlice.actions;
 export default userSlice.reducer;

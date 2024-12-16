@@ -5,6 +5,7 @@ import { db } from "@/firebase";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import { setHasPurchased } from "../store/slice/PremiumSlice";
 import Confetti from "react-confetti";
+import { updateUserBalance } from "../store/slice/userSlice";
 
 const BuyPremium = () => {
   const [loading, setLoading] = useState(false);
@@ -34,7 +35,7 @@ const BuyPremium = () => {
         setErrorMessage("Insufficient balance. Please add funds.");
         return;
       }
-
+      const newBalance = balance - price;
       // Deduct balance and update Firestore
       await updateDoc(userRef, {
         balance: balance - price,
@@ -44,17 +45,17 @@ const BuyPremium = () => {
         "buy_analyzer_tool.lastPurchase": serverTimestamp(),
       });
 
+        dispatch(updateUserBalance(newBalance));
+
         // Show confetti and hide "Buy Now" button
         setShowConfetti(true);
         setSuccess(true);
-        // Dispatch action to update premium state in Redux
-        dispatch(setHasPurchased(true));
-
-   
 
         // Hide confetti after 3 seconds
         setTimeout(() => {
           setShowConfetti(false);
+          // Dispatch action to update premium state in Redux
+          dispatch(setHasPurchased(true));
         }, 3000);
     } catch (error) {
       setErrorMessage("An error occurred while processing the request.");
