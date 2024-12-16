@@ -1,22 +1,21 @@
 import { useState } from "react";
 import { telegramId } from "@/libs/telegram";
-import { db } from "@/firebase"; // Firebase instance
+import { db } from "@/firebase";  
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
-import Confetti from "react-confetti"; // Import Confetti
+import Confetti from "react-confetti";  
 
 const BuyPremium = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState(false); // New state for success message
-  const [confetti, setConfetti] = useState(false); // New state for confetti
+  const [successMessage, setSuccessMessage] = useState(false);  
+  const [confetti, setConfetti] = useState(false);  
   const id = String(telegramId);
 
   const handleBuyNow = async () => {
     setLoading(true);
 
     try {
-      // Get the user document from Firestore using doc() and getDoc()
-      const userRef = doc(db, "users", id);
+       const userRef = doc(db, "users", id);
       const userDoc = await getDoc(userRef);
 
       if (!userDoc.exists()) {
@@ -45,7 +44,8 @@ const BuyPremium = () => {
         balance: newBalance, // Deduct $5
         "buy_analyzer_tool.duration": 30, // 30 days duration
         "buy_analyzer_tool.amount": price, // $5 amount
-        "buy_analyzer_tool.lastPurchase": currentTime, // Timestamp of purchase
+        "buy_analyzer_tool.isActive": true,
+        "buy_analyzer_tool.lastPurchase": currentTime,  
       });
 
       // Trigger confetti and display success message
