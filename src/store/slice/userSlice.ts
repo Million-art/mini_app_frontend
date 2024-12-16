@@ -1,6 +1,6 @@
 import { RootState } from '@/store/store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
+ 
 // Define user type
 export type TUser = {
   uid: string;
@@ -9,7 +9,16 @@ export type TUser = {
     claimedTime: Date | null;
     claimedDay: number; // The current claim day
   };
-  [key: string]: any; // For any additional dynamic fields
+  firstName: string;
+  lastName: string;
+  userImage: string | null;
+  username?: string
+  languageCode?:string,
+  referrals?: string[],
+  referredBy?: string | null,
+  isPremium?: boolean
+  walletAddress?: string | null
+  rank?: number;  
 };
 
 export type TUserSlice = {

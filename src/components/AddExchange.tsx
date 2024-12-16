@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { db } from "@/firebase";  
 import { doc, getDoc, setDoc } from "firebase/firestore";  
-import Loading from "./Loading";  
 import { telegramId } from "@/libs/telegram"; 
 import CryptoJS from "crypto-js"; 
+import CryptoAnalyzer from "./CryptoAnalyzer";
+
 const AddExchange = () => {
   const [apiKey, setApiKey] = useState("");
   const [apiSecret, setApiSecret] = useState("");
@@ -11,6 +12,7 @@ const AddExchange = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [loading, setLoading] = useState(false);  
+  const [exchangeAdded, setExchangeAdded] = useState(false);
   const id = String(telegramId);
   
   // Encryption function
@@ -21,7 +23,6 @@ const AddExchange = () => {
     return { encryptedApiKey, encryptedApiSecret };
   };
 
- 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -50,6 +51,7 @@ const AddExchange = () => {
           },
         }, { merge: true }); 
 
+        setExchangeAdded(true);  // Set exchangeAdded to true
         setSuccessMessage("API Key and Secret added successfully!");
         setApiKey("");
         setApiSecret("");
@@ -64,72 +66,79 @@ const AddExchange = () => {
     }
   };
 
+  // If exchange added successfully, show CryptoAnalyzer; otherwise, show AddExchange form
+  if (exchangeAdded) {
+    return <CryptoAnalyzer />;
+  }
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white flex justify-center py-10">
+    <div className="min-h-screen bg-gray-900 text-white flex justify-center ">
       <div className="p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Add Your Exchange API Key</h1>
         
-        {/* Loading spinner */}
-        {loading && <Loading />}
-        
+       
         {/* Error and Success Messages */}
         {errorMessage && <div className="text-red-500 text-center mb-4">{errorMessage}</div>}
         {successMessage && <div className="text-green-500 text-center mb-4">{successMessage}</div>}
 
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="exchangePlatform" className="block text-lg font-medium mb-2">
-              Select Exchange Platform:
-            </label>
-            <select
-              id="exchangePlatform"
-              value={exchangePlatform}
-              onChange={(e) => setExchangePlatform(e.target.value)}
-              className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
+        {/* AddExchange form if exchange not added yet */}
+        {!exchangeAdded && (
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="exchangePlatform" className="block text-lg font-medium mb-2">
+                Select Exchange Platform:
+              </label>
+              <select
+                id="exchangePlatform"
+                value={exchangePlatform}
+                onChange={(e) => setExchangePlatform(e.target.value)}
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
+              >
+                <option value="binance">Binance</option>
+                <option value="bingx">BingX</option>
+                <option value="bybit">Bybit</option>
+              </select>
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="apiKey" className="block text-lg font-medium mb-2">
+                API Key:
+              </label>
+              <input
+                type="text"
+                id="apiKey"
+                value={apiKey}
+                onChange={(e) => setApiKey(e.target.value)}
+                placeholder="Enter your API Key"
+                required
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
+              />
+            </div>
+
+            <div className="mb-6">
+              <label htmlFor="apiSecret" className="block text-lg font-medium mb-2">
+                API Secret:
+              </label>
+              <input
+                type="password"
+                id="apiSecret"
+                value={apiSecret}
+                onChange={(e) => setApiSecret(e.target.value)}
+                placeholder="Enter your API Secret"
+                required
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="w-full p-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
             >
-              <option value="binance">Binance</option>
-              <option value="bingx">BingX</option>
-              <option value="bybit">Bybit</option>
-            </select>
-          </div>
+                       {loading ? "Submiting..." : "Submit API Key"}
 
-          <div className="mb-4">
-            <label htmlFor="apiKey" className="block text-lg font-medium mb-2">
-              API Key:
-            </label>
-            <input
-              type="text"
-              id="apiKey"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder="Enter your API Key"
-              required
-              className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
-            />
-          </div>
-
-          <div className="mb-6">
-            <label htmlFor="apiSecret" className="block text-lg font-medium mb-2">
-              API Secret:
-            </label>
-            <input
-              type="password"
-              id="apiSecret"
-              value={apiSecret}
-              onChange={(e) => setApiSecret(e.target.value)}
-              placeholder="Enter your API Secret"
-              required
-              className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full p-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
-          >
-            Submit API Key
-          </button>
-        </form>
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
