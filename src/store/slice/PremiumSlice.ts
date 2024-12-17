@@ -15,9 +15,7 @@ const premiumSlice = createSlice({
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
-    setHasPurchased: (state, action: PayloadAction<boolean>) => {
-      state.hasPurchased = action.payload;
-    },
+   
     setHasExchange: (state, action: PayloadAction<boolean>) => {
       state.hasExchange = action.payload;
     },
@@ -28,5 +26,5 @@ const premiumSlice = createSlice({
 export const selectPremiumState = (state: RootState) => state.premium;
 
 // Export actions and reducer
-export const { setLoading, setHasPurchased, setHasExchange } = premiumSlice.actions;
+export const { setLoading, setHasExchange } = premiumSlice.actions;
 export default premiumSlice.reducer;
