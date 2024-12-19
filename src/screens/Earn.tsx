@@ -37,7 +37,6 @@ const Earn = () => {
     },
   ]);
 
-
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const dispatch = useDispatch();
@@ -47,11 +46,10 @@ const Earn = () => {
     setShowPopup(true);
   };
 
- const closePopup = () => {
+  const closePopup = () => {
     setShowPopup(false);
     setSelectedTask(null);
   };
-
 
   const handleClaimReward = (taskId: string) => {
     dispatch(
@@ -61,42 +59,40 @@ const Earn = () => {
       })
     );
 
-
     setTasks((prevTasks) =>
       prevTasks.map((task) =>
         task.id === taskId ? { ...task, claimed: true } : task
       )
     );
-  closePopup();
+    closePopup();
   };
 
   return (
-
-    <div className="text-white bg-gray-deep min-h-screen">
+    <div className="text-white bg-gray-900 min-h-screen">
       {/* Header */}
-      <div className="flex flex-col items-center justify-center py-6 bg-gray-dark shadow-lg">
-        <FaMoneyBillAlt className="text-yellow-500 w-20 h-20 mb-4" />
-        <h1 className="text-4xl font-bold">Earn Coins</h1>
-        <p className="text-gray-400 mt-2">Complete tasks to earn rewards!</p>
+      <div className="flex flex-col items-center justify-center py-8 justify-center bg-gradient-to-r from-gray-900 to-black shadow-lg rounded-b-xl">
+        <FaMoneyBillAlt className="text-yellow-400 w-20 h-20 mb-4 animate-pulse" />
+        <h1 className="text-4xl font-extrabold text-white tracking-wide">Earn Coins</h1>
+        <p className="text-gray-300 mt-2">Complete tasks and earn rewards!</p>
       </div>
 
       {/* Task List */}
       <div className="mx-4 mt-8">
-        <h2 className="text-lg font-bold mb-4 text-yellow-light">Important Tasks</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <h2 className="text-lg font-bold mb-4 text-yellow-300">Important Tasks</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {tasks.map((task) => (
             <div
               key={task.id}
-              className="bg-gray-dark p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
+              className="bg-gradient-to-t from-gray-800 via-gray-900 to-gray-700 p-6 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
               onClick={() => handleTaskClick(task)}
             >
-              <h3 className="text-xl font-bold text-yellow-light">{task.name}</h3>
+              <h3 className="text-xl font-semibold text-yellow-400">{task.name}</h3>
               <p className="text-gray-400 mt-2">Reward: {task.reward} coins</p>
               <button
-                className={`mt-4 px-4 py-2 w-full rounded-lg font-bold transition duration-300 ${
+                className={`mt-4 px-4 py-2 w-full rounded-lg font-semibold transition duration-300 ${
                   task.claimed
-                    ? "bg-gray-medium text-gray-400 cursor-not-allowed"
-                    : "bg-yellow text-black hover:bg-yellow-light"
+                    ? "bg-gray-600 text-gray-400 cursor-not-allowed"
+                    : "bg-yellow-500 text-black hover:bg-yellow-400"
                 }`}
                 disabled={task.claimed}
               >
@@ -105,21 +101,19 @@ const Earn = () => {
             </div>
           ))}
         </div>
-
       </div>
 
       {/* Task Popup */}
       {showPopup && selectedTask && (
-
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
-          <div className="bg-gray-900 text-white p-6 rounded-lg max-w-md w-full shadow-lg relative">
+          <div className="bg-gray-900 text-white p-8 rounded-xl max-w-md w-full shadow-lg relative transform transition-all duration-300 scale-105">
             <button
               onClick={closePopup}
-              className="absolute top-3 right-3 text-gray-400 hover:text-white text-xl"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl"
             >
               ✕
             </button>
-            <h2 className="text-2xl font-bold mb-4">{selectedTask.name}</h2>
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">{selectedTask.name}</h2>
             <p className="mb-4">Reward: {selectedTask.reward} coins</p>
             <p className="mb-6 text-gray-400">
               Complete the task by visiting the link below:
@@ -128,14 +122,13 @@ const Earn = () => {
               href={selectedTask.link}
               target="_blank"
               rel="noopener noreferrer"
-
-              className="text-yellow-light hover:underline"
+              className="text-yellow-400 hover:underline"
             >
               {selectedTask.link}
             </a>
             <div className="mt-6">
               <button
-                className="px-4 py-2 w-full bg-yellow rounded-lg text-black font-bold hover:bg-yellow-light transition duration-300"
+                className="px-4 py-2 w-full bg-yellow-500 rounded-lg text-black font-bold hover:bg-yellow-400 transition duration-300"
                 onClick={() => handleClaimReward(selectedTask.id)}
                 disabled={selectedTask.claimed}
               >
