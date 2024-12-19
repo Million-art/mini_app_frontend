@@ -50,7 +50,11 @@ const Liders = () => {
     }, []);
 
     return (
+<<<<<<< HEAD
+        <section className="bg-gray-800  mt-6 mb-24 h-60 rounded-lg relative">
+=======
         <section className="bg-gray-dark  mt-6  h-60 rounded-lg relative">
+>>>>>>> ui-update
                 <h1 className="text-white font-semibold text-2xl mx-4 text-center">Leaders Board</h1>
             <div className="h-full overflow-y-auto mt-3 hide-scrollbar pb-12">
                 {topUsers.length === 0 ? (
@@ -59,15 +63,26 @@ const Liders = () => {
                     topUsers.map(({ id, balance, firstName, lastName, userImage }, idx) => (
                         <div
                             key={idx}
+<<<<<<< HEAD
+                            className={`${id === user.uid && "bg-gray-900"} flex items-center px-2 py-1 w-full`}
+                        >
+                            <div className="flex-shrink-0 mr-4">
+                                <div className="bg-zinc-950 flex items-center justify-center rounded-full h-8 w-8">
+=======
                             className={`${id === user.uid && ""} flex items-center px-2 py-1 w-full`}
                         >
                             <div className="flex-shrink-0 mr-4">
                                 <div className=" flex items-center justify-center rounded-full h-8 w-8">
+>>>>>>> ui-update
                                     <p className="text-white text-sm">{idx + 1}</p>
                                 </div>
                             </div>
                             <div className="flex-shrink-0 mr-2">
+<<<<<<< HEAD
+                                <div className="border-2 border-yellow-700 overflow-hidden flex items-center justify-center rounded-full bg-gray-800 h-10 w-10">
+=======
                                 <div className="border-2 border-yellow overflow-hidden flex items-center justify-center rounded-full bg-gray-medium h-10 w-10">
+>>>>>>> ui-update
                                     {userImage ? (
                                         <img
                                             className="w-9 h-9 object-contain"
@@ -75,7 +90,11 @@ const Liders = () => {
                                             alt={firstName.charAt(0).toUpperCase()}
                                         />
                                     ) : (
+<<<<<<< HEAD
+                                        <div className="text-xl text-white bg-black w-14 h-14  flex justify-center items-center">
+=======
                                         <div className="text-xl text-white bg-gray-medium w-14 h-14  flex justify-center items-center">
+>>>>>>> ui-update
                                         {firstName.charAt(0).toUpperCase()}
                                         </div>
                                     )}

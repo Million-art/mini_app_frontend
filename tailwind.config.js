@@ -2,6 +2,9 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+<<<<<<< HEAD
+    extend: {},
+=======
     extend: {
       colors: {
         primary: {
@@ -41,6 +44,7 @@ export default {
         },
       },
     },
+>>>>>>> ui-update
   },
   plugins: [],
 };

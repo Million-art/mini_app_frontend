@@ -129,10 +129,17 @@ const Daily: React.FC  = () => {
   }, [calculateClaimAmount]);
 
   return (
+<<<<<<< HEAD
+    <div className="text-white">
+      <div className="flex items-center justify-center py-10">
+        <div className="rounded-full p-4">
+          <FaCalendarCheck className="w-28 h-28 object-contain text-cyan-500" />
+=======
     <div className="text-white bg-gray-deep h-screen">
       <div className="flex items-center justify-center py-10">
         <div className="rounded-full p-4">
           <FaCalendarCheck className="w-28 h-28 object-contain text-yellow" />
+>>>>>>> ui-update
         </div>
       </div>
       <p className="text-center font-bold text-3xl">Daily Rewards</p>
@@ -144,7 +151,11 @@ const Daily: React.FC  = () => {
         {isClaimed ? (
           <button
             disabled
+<<<<<<< HEAD
+            className="w-full bg-gray-500 text-white font-bold py-2 rounded cursor-not-allowed"
+=======
             className="w-full bg-gray-medium text-white font-bold py-2 rounded cursor-not-allowed"
+>>>>>>> ui-update
           >
             Claimed for today
           </button>
@@ -153,7 +164,11 @@ const Daily: React.FC  = () => {
             onClick={handleClaim}
             disabled={claimDisabled}
             className={`w-full ${
+<<<<<<< HEAD
+              claimDisabled ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-700"
+=======
               claimDisabled ? "bg-gray-dark" : "bg-yellow hover:bg-yellow-light"
+>>>>>>> ui-update
             } text-white font-bold py-2 rounded`}
           >
             Claim ${formatNumber(claimAmount)}

@@ -72,7 +72,11 @@ const AddExchange = () => {
   }
 
   return (
+<<<<<<< HEAD
+    <div className="min-h-screen bg-gray-900 text-white flex justify-center ">
+=======
     <div className="min-h-screen bg-gray-dark text-white flex justify-center ">
+>>>>>>> ui-update
       <div className="p-8 rounded-lg shadow-lg w-full max-w-md">
         <h1 className="text-2xl font-bold text-center mb-6">Add Your Exchange API Key</h1>
         
@@ -92,7 +96,11 @@ const AddExchange = () => {
                 id="exchangePlatform"
                 value={exchangePlatform}
                 onChange={(e) => setExchangePlatform(e.target.value)}
+<<<<<<< HEAD
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
+=======
                 className="w-full p-2 bg-gray-medium text-white border border-gray-600 rounded-lg"
+>>>>>>> ui-update
               >
                 <option value="binance">Binance</option>
                 <option value="bingx">BingX</option>
@@ -111,7 +119,11 @@ const AddExchange = () => {
                 onChange={(e) => setApiKey(e.target.value)}
                 placeholder="Enter your API Key"
                 required
+<<<<<<< HEAD
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
+=======
                 className="w-full p-2 bg-gray-medium text-white border border-gray-600 rounded-lg"
+>>>>>>> ui-update
               />
             </div>
 
@@ -126,13 +138,21 @@ const AddExchange = () => {
                 onChange={(e) => setApiSecret(e.target.value)}
                 placeholder="Enter your API Secret"
                 required
+<<<<<<< HEAD
+                className="w-full p-2 bg-gray-700 text-white border border-gray-600 rounded-lg"
+=======
                 className="w-full p-2 bg-gray-medium text-white border border-gray-600 rounded-lg"
+>>>>>>> ui-update
               />
             </div>
 
             <button
               type="submit"
+<<<<<<< HEAD
+              className="w-full p-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition-colors"
+=======
               className="w-full p-3 bg-blue text-white font-semibold rounded-lg hover:bg-blue-medium transition-colors"
+>>>>>>> ui-update
             >
                        {loading ? "Submiting..." : "Submit API Key"}
 

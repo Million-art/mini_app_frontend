@@ -45,6 +45,7 @@ const Referrals = () => {
   };
 
   return (
+ 
     <div className="text-white bg-gray-deep ">
       <p className="pt-4 text-center font-bold text-4xl">Invite friends</p>
       <p className="text-center mt-4 mx-4">
@@ -59,6 +60,7 @@ const Referrals = () => {
           <p className="font-bold">+$ 100,000</p>
         </div>
       </div>
+
       <div className="bg-gray-dark mt-6 mx-4 rounded-lg p-2 flex items-center">
         <div>
           <FaGift className="w-20 h-20 object-contain text-yellow" />
@@ -80,6 +82,7 @@ const Referrals = () => {
           </div>
           <div className="flex-shrink-0 flex flex-col justify-between">
             <button
+
               className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
               onClick={copyToClipboard}
             >
@@ -87,6 +90,7 @@ const Referrals = () => {
               {isCopied ? " Copied!" : " Copy"}
             </button>
             <button
+
               className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
               onClick={() => {
                 window.open(`https://t.me/share/url?url=${encodeURIComponent(invitationLink)}`, '_blank');
@@ -99,6 +103,7 @@ const Referrals = () => {
         </div>
       </div>
 
+
       <div className="bg-gray-dark mx-4 py-2 mt-6 h-60 rounded-lg overflow-hidden overflow-y-auto hide-scrollbar mb-2">
         {referrals.length > 0 ? (
           referrals.map(({ balance, firstName, lastName, userImage }, idx) => (
@@ -109,7 +114,9 @@ const Referrals = () => {
                 </div>
               </div>
               <div className="flex-shrink-0 mr-2">
-                <div className="border-2 border-yellow overflow-hidden flex items-center justify-center rounded-full bg-gray-dark h-10 w-10">
+
+                <div className="border-2 border-yellow-700 overflow-hidden flex items-center justify-center rounded-full bg-gray-dark h-10 w-10">
+
                   {userImage ? (
                     <img
                       className="w-9 h-9 object-contain"

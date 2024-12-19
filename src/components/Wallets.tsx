@@ -85,7 +85,11 @@ const Wallets = () => {
   if (isLoading) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center">
+<<<<<<< HEAD
+        <div className="bg-gray-200 text-gray-700 font-bold py-2 px-4 rounded">
+=======
         <div className="bg-gray-medium font-bold py-2 px-4 rounded">
+>>>>>>> ui-update
           <p>Loading...</p>
         </div>
       </div>
@@ -94,6 +98,17 @@ const Wallets = () => {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center">
+<<<<<<< HEAD
+      <FaBitcoin className="w-28 h-28 object-contain text-cyan-500" />
+      {tonWalletAddress ? (
+        <div className="flex flex-col items-center">
+          <p className="mb-4 text-white">
+            Connected: <b className="text-blue-500">{formatAddress(tonWalletAddress)}</b>
+          </p>
+          <button
+            onClick={handleWalletAction}
+            className="bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+=======
       <FaBitcoin className="w-28 h-28 object-contain text-yellow" />
       {tonWalletAddress ? (
         <div className="flex flex-col items-center">
@@ -103,6 +118,7 @@ const Wallets = () => {
           <button
             onClick={handleWalletAction}
             className="bg-yellow hover:bg-blue-yellow-light text-white font-bold py-2 px-4 rounded"
+>>>>>>> ui-update
           >
             Disconnect Wallet
           </button>
@@ -110,7 +126,11 @@ const Wallets = () => {
       ) : (
         <button
           onClick={handleWalletAction}
+<<<<<<< HEAD
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 my-5 px-4 rounded"
+=======
           className="bg-yellow hover:bg-yellow-light text-white font-bold py-2 my-5 px-4 rounded"
+>>>>>>> ui-update
         >
           Connect Ton Wallet
         </button>
