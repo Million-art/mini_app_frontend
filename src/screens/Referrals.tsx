@@ -66,50 +66,49 @@ const Referrals = () => {
         </div>
 
         {/* Invitation Link Section */}
-        <div className=" opacity-80 mt-6 p-6 rounded-lg shadow-xl flex items-center justify-between">
+        <div className="opacity-80 mt-6 p-6 rounded-lg shadow-xl flex items-center justify-between">
           <div className="flex-grow">
-          <small>Here is Your Referral Link</small>
-
+            <small>Here is Your Referral Link</small>
             <p className="bg-gray-800 text-white rounded-lg p-2 break-words">{invitationLink}</p>
           </div>
-          <div className="ml-4">
+          <div className="ml-4 flex flex-col">
             <button
-              className="bg-blue-600 hover:bg-blue-500 text-white py-1 px-2 rounded-lg transition duration-300 ease-in-out shadow-md hover:scale-105"
+              className="bg-blue-600 hover:bg-blue-500 text-white py-1 px-2 rounded-lg transition duration-300 ease-in-out shadow-md hover:scale-105 mb-2"
               onClick={copyToClipboard}
             >
               <FaCopy className="inline-block mr-2" />
               {isCopied ? "Copied!" : "Copy"}
             </button>
             <button
-              className="mt-2 bg-purple-500 text-white py-2 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
+              className="bg-purple-500 text-white py-2 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center"
               onClick={() => {
                 window.open(
-                  `Hello! ${firstName} is invited to earn the rewards. ${encodeURIComponent(invitationLink)}`,
+                  `https://t.me/share/url?url=${encodeURIComponent(
+                    invitationLink
+                  )}&text=${encodeURIComponent(`Hello! ${firstName} is invited to earn rewards. Click the link below to join:`)}`,
                   "_blank"
                 );
               }}
             >
-            <button
-              className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
-                onClick={() => {
-                  window.open(
-                    `Hello! ${firstName} is invited to earn rewards. Click the link below to join: 
-                https://t.me/share/url?url=${encodeURIComponent(invitationLink)}`, 
-                    '_blank'
-                  );
-                }}              
-            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="w-4 h-4 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                strokeWidth="2"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M16 13l4-4m0 0l-4-4m4 4H8m-4 0c1.104 0 2 .896 2 2v14c0 1.104-.896 2-2 2H4c-1.104 0-2-.896-2-2V5c0-1.104.896-2 2-2z"
+                />
+              </svg>
               Invite
-            </button>
-              <span className="flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M16 13l4-4m0 0l4 4m-4-4v12M4 3h16c1.104 0 2 .896 2 2v14c0 1.104-.896 2-2 2H4c-1.104 0-2-.896-2-2V5c0-1.104.896-2 2-2z"/>
-                </svg>
-                <span className="pl-2">Invite</span>
-              </span>
             </button>
           </div>
         </div>
+
 
         {/* Referrals Section */}
         <div className="mt-8 bg-gray-800 rounded-lg p-6 shadow-xl max-h-96 overflow-y-auto">
