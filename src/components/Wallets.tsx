@@ -104,7 +104,7 @@ const Wallets = () => {
           </p>
           <button
             onClick={handleWalletAction}
-            className="bg-yellow hover:bg-blue-yellow-light text-white font-bold py-2 px-4 rounded"
+            className="bg-yellow hover:bg-blue-yellow-light text-black font-bold py-2 px-4 rounded"
           >
             Disconnect Wallet
           </button>
@@ -113,7 +113,7 @@ const Wallets = () => {
         <button
           onClick={handleWalletAction}
 
-          className="bg-yellow hover:bg-yellow-light text-white font-bold py-2 my-5 px-4 rounded"
+          className="bg-yellow hover:bg-yellow-light text-black font-bold py-2 my-5 px-4 rounded"
         >
           Connect Ton Wallet
         </button>
@@ -123,8 +123,8 @@ const Wallets = () => {
 
       {/* Confirmation Modal */}
       {showConfirmModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50">
-          <div className="bg-gray-800 p-6 rounded shadow-lg">
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-dark bg-opacity-50">
+          <div className="bg-gray-dark p-6 rounded shadow-lg">
             <p className="mb-4 text-white">Are you sure you want to disconnect your wallet?</p>
             <div className="flex justify-end gap-4">
               <button
