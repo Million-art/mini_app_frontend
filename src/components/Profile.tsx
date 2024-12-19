@@ -81,10 +81,17 @@ const Profile = () => {
     }
 
     return (
+<<<<<<< HEAD
         <section className="flex items-center   bg-gray-900 p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
         {/* Profile Picture Section */}
         <div className="z-20">
           <div className="border-4 border-blue-700 flex items-center justify-center rounded-full bg-gray-800 w-16 h-16 overflow-hidden">
+=======
+        <section className="flex items-center   bg-gray-dark p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+        {/* Profile Picture Section */}
+        <div className="z-20">
+          <div className="border-4 border-yellow-light flex items-center justify-center rounded-full bg-yellow w-16 h-16 overflow-hidden">
+>>>>>>> ui-update
             {user ? (
               <img
                 className="object-cover w-full h-full"
@@ -92,7 +99,11 @@ const Profile = () => {
                 alt={`${user.firstName}'s profile`}
               />
             ) : (
+<<<<<<< HEAD
               <div className="text-2xl text-white bg-black w-16 h-16 flex items-center justify-center">
+=======
+              <div className="text-2xl text-white bg-primary w-16 h-16 flex items-center justify-center">
+>>>>>>> ui-update
                 {user.firstName.charAt(0).toUpperCase()}
               </div>
             )}
@@ -110,6 +121,7 @@ const Profile = () => {
       
           {/* Rank Section */}
           <p className="text-sm mb-4 tracking-wider text-gray-300">
+<<<<<<< HEAD
             Your rank: {user.rank} of {totalUsers}
           </p>
       
@@ -125,6 +137,23 @@ const Profile = () => {
               {((user.rank / totalUsers) * 100).toFixed(1)}%
             </span>
           </div> */}
+=======
+                    Your rank: <span className="font-semibold text-yellow-400">{user.rank}</span> of {totalUsers}
+                </p>
+
+                {/* Progress Bar Section */}
+                <div className="flex items-center">
+                    <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
+                        <div
+                            className="h-full bg-yellow-400 transition-all duration-300 ease-in-out"
+                            style={{ width: `${(user.rank / totalUsers) * 100}%` }}  // Progress bar based on rank
+                        />
+                    </div>
+                    <span className="ml-3 text-sm text-gray-300">
+                        {((user.rank / totalUsers) * 100).toFixed(1)}%
+                    </span>
+                </div>
+>>>>>>> ui-update
         </div>
       </section>
       

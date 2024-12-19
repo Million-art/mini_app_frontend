@@ -49,7 +49,11 @@ const Premium = () => {
   }
 
   return (
+<<<<<<< HEAD
     <section>
+=======
+    <section className="mt-6 rounded-full w-screen">
+>>>>>>> ui-update
     
           {!hasExchange ? (
             <AddExchange /> // Show AddExchange if no exchange credentials are present

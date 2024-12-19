@@ -45,6 +45,7 @@ const Referrals = () => {
   };
 
   return (
+<<<<<<< HEAD
     <div className="text-white mb-24">
       <p className="mt-4 text-center font-bold text-4xl">Invite friends</p>
       <p className="text-center mt-4 mx-4">
@@ -53,15 +54,31 @@ const Referrals = () => {
       <div className="bg-gray-800 mt-6 mx-4 rounded-lg p-2 flex items-center">
         <div>
           <FaGift className="w-20 h-20 object-contain text-orange-400" />
+=======
+    <div className="text-white bg-gray-deep ">
+      <p className="pt-4 text-center font-bold text-4xl">Invite friends</p>
+      <p className="text-center mt-4 mx-4">
+        You can receive 10% of your invited friend's mined coins
+      </p>
+      <div className="bg-gray-dark mt-6 mx-4 rounded-lg p-2 flex items-center">
+        <div>
+          <FaGift className="w-20 h-20 object-contain text-yellow" />
+>>>>>>> ui-update
         </div>
         <div className="mx-3 w-full">
           <p className="text-lg font-bold">Invite a friend</p>
           <p className="font-bold">+$ 100,000</p>
         </div>
       </div>
+<<<<<<< HEAD
       <div className="bg-gray-800 mt-6 mx-4 rounded-lg p-2 flex items-center">
         <div>
           <FaGift className="w-20 h-20 object-contain text-orange-400" />
+=======
+      <div className="bg-gray-dark mt-6 mx-4 rounded-lg p-2 flex items-center">
+        <div>
+          <FaGift className="w-20 h-20 object-contain text-yellow" />
+>>>>>>> ui-update
         </div>
         <div className="mx-3 w-full">
           <p className="text-lg font-bold">Invite a friend with Telegram Premium</p>
@@ -69,33 +86,60 @@ const Referrals = () => {
         </div>
       </div>
 
+<<<<<<< HEAD
       <div className="bg-gray-800 mt-6 mx-4 rounded-lg p-2 flex items-center">
         <div className="flex w-full">
           <div className="flex-grow min-w-0 mr-2">
             <p
               className="bg-gray-700 rounded-md py-1 px-2 break-words h-full"
+=======
+      <div className="bg-gray-dark mt-6 mx-4 rounded-lg p-2 flex items-center">
+        <div className="flex w-full">
+          <div className="flex-grow min-w-0 mr-2">
+            <p
+              className="bg-gray-dark rounded-md py-1 px-2 break-words h-full"
+>>>>>>> ui-update
             >
               {invitationLink}
             </p>
           </div>
           <div className="flex-shrink-0 flex flex-col justify-between">
             <button
+<<<<<<< HEAD
               className="bg-blue-500 mb-2 hover:bg-blue-700 text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+=======
+              className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+>>>>>>> ui-update
               onClick={copyToClipboard}
             >
               <FaCopy size={16} />
               {isCopied ? " Copied!" : " Copy"}
             </button>
             <button
+<<<<<<< HEAD
               className="bg-blue-500 mb-2 hover:bg-blue-700 text-white text-sm font-bold p-2 rounded whitespace-nowrap"
             >
               Invite
             </button>
+=======
+              className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+              onClick={() => {
+                window.open(`https://t.me/share/url?url=${encodeURIComponent(invitationLink)}`, '_blank');
+              }}
+            >
+              Invite
+            </button>
+
+>>>>>>> ui-update
           </div>
         </div>
       </div>
 
+<<<<<<< HEAD
       <div className="bg-gray-800 mx-4 py-2 mt-6 h-60 rounded-lg overflow-hidden overflow-y-auto hide-scrollbar mb-2">
+=======
+      <div className="bg-gray-dark mx-4 py-2 mt-6 h-60 rounded-lg overflow-hidden overflow-y-auto hide-scrollbar mb-2">
+>>>>>>> ui-update
         {referrals.length > 0 ? (
           referrals.map(({ balance, firstName, lastName, userImage }, idx) => (
             <div key={idx} className={`flex items-center px-2 py-1 w-full`}>
@@ -105,7 +149,11 @@ const Referrals = () => {
                 </div>
               </div>
               <div className="flex-shrink-0 mr-2">
+<<<<<<< HEAD
                 <div className="border-2 border-yellow-700 overflow-hidden flex items-center justify-center rounded-full bg-gray-800 h-10 w-10">
+=======
+                <div className="border-2 border-yellow-700 overflow-hidden flex items-center justify-center rounded-full bg-gray-dark h-10 w-10">
+>>>>>>> ui-update
                   {userImage ? (
                     <img
                       className="w-9 h-9 object-contain"
