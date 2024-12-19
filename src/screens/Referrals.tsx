@@ -85,7 +85,7 @@ const Referrals = () => {
                 window.open(
                   `https://t.me/share/url?url=${encodeURIComponent(
                     invitationLink
-                  )}&text=${encodeURIComponent(`Hello! ${firstName} is invited to earn rewards. Click the link below to join:`)}`,
+                  )}&text=${encodeURIComponent(`🎁🎁🎁Hello! ${firstName} invited You to earn rewards.🎁🎁🎁 Click the link and Earn :`)}`,
                   "_blank"
                 );
               }}
