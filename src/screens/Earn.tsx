@@ -78,7 +78,7 @@ const Earn = () => {
 
       {/* Task List */}
       <div className="mx-4 mt-8">
-        <h2 className="text-lg font-bold mb-4 text-yellow-400">Important Tasks</h2>
+        <h2 className="text-lg font-bold mb-4 text-yellow-light">Important Tasks</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {tasks.map((task) => (
             <div
@@ -86,13 +86,13 @@ const Earn = () => {
               className="bg-gray-dark p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300 cursor-pointer"
               onClick={() => handleTaskClick(task)}
             >
-              <h3 className="text-xl font-bold text-yellow-400">{task.name}</h3>
+              <h3 className="text-xl font-bold text-yellow-light">{task.name}</h3>
               <p className="text-gray-400 mt-2">Reward: {task.reward} coins</p>
               <button
                 className={`mt-4 px-4 py-2 w-full rounded-lg font-bold transition duration-300 ${
                   task.claimed
-                    ? "bg-gray-700 text-gray-400 cursor-not-allowed"
-                    : "bg-yellow-500 text-black hover:bg-yellow-400"
+                    ? "bg-gray-medium text-gray-400 cursor-not-allowed"
+                    : "bg-yellow text-black hover:bg-yellow-light"
                 }`}
                 disabled={task.claimed}
               >
@@ -122,13 +122,13 @@ const Earn = () => {
               href={selectedTask.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-yellow-400 hover:underline"
+              className="text-yellow-light hover:underline"
             >
               {selectedTask.link}
             </a>
             <div className="mt-6">
               <button
-                className="px-4 py-2 w-full bg-yellow-500 rounded-lg text-black font-bold hover:bg-yellow-400 transition duration-300"
+                className="px-4 py-2 w-full bg-yellow rounded-lg text-black font-bold hover:bg-yellow-light transition duration-300"
                 onClick={() => handleClaimReward(selectedTask.id)}
                 disabled={selectedTask.claimed}
               >

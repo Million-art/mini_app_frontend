@@ -102,7 +102,7 @@ const Wallets = () => {
           </p>
           <button
             onClick={handleWalletAction}
-            className="bg-blue hover:bg-blue-medium text-white font-bold py-2 px-4 rounded"
+            className="bg-yellow hover:bg-blue-yellow-light text-white font-bold py-2 px-4 rounded"
           >
             Disconnect Wallet
           </button>
@@ -110,7 +110,7 @@ const Wallets = () => {
       ) : (
         <button
           onClick={handleWalletAction}
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 my-5 px-4 rounded"
+          className="bg-yellow hover:bg-yellow-light text-white font-bold py-2 my-5 px-4 rounded"
         >
           Connect Ton Wallet
         </button>

@@ -153,7 +153,7 @@ const Daily: React.FC  = () => {
             onClick={handleClaim}
             disabled={claimDisabled}
             className={`w-full ${
-              claimDisabled ? "bg-gray-dark" : "bg-blue hover:bg-blue-medium"
+              claimDisabled ? "bg-gray-dark" : "bg-yellow hover:bg-yellow-light"
             } text-white font-bold py-2 rounded`}
           >
             Claim ${formatNumber(claimAmount)}

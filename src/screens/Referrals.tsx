@@ -80,14 +80,14 @@ const Referrals = () => {
           </div>
           <div className="flex-shrink-0 flex flex-col justify-between">
             <button
-              className="bg-blue mb-2 hover:bg-blue-medium text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+              className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
               onClick={copyToClipboard}
             >
               <FaCopy size={16} />
               {isCopied ? " Copied!" : " Copy"}
             </button>
             <button
-              className="bg-blue mb-2 hover:bg-blue-medium text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+              className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
             >
               Invite
             </button>

@@ -65,7 +65,7 @@ const CryptoAnalyzer: React.FC = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue text-white py-2 rounded-md hover:bg-blue-medium transition duration-300"
+          className="w-full bg-yellow font-bold text-black py-2 rounded-md hover:bg-yellow-light transition duration-300"
         >
           Analyze →
         </button>
