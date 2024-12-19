@@ -6,7 +6,7 @@ const AirDrops = () => {
 
   return (
 
-    <div className="flex min-h-screen text-white bg-gray-deep flex-col items-center justify-center">  
+    <div className="flex min-h-screen text-white  flex-col items-center justify-center">  
       <Wallets />
     </div>
   );
