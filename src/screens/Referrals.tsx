@@ -88,9 +88,13 @@ const Referrals = () => {
             </button>
             <button
               className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+              onClick={() => {
+                window.open(`https://t.me/share/url?url=${encodeURIComponent(invitationLink)}`, '_blank');
+              }}
             >
               Invite
             </button>
+
           </div>
         </div>
       </div>
