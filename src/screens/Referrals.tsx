@@ -89,6 +89,18 @@ const Referrals = () => {
                 );
               }}
             >
+            <button
+              className="bg-blue mb-2 hover:bg-yellow-light text-white text-sm font-bold p-2 rounded whitespace-nowrap"
+                onClick={() => {
+                  window.open(
+                    `Hello! ${firstName} is invited to earn rewards. Click the link below to join: 
+                https://t.me/share/url?url=${encodeURIComponent(invitationLink)}`, 
+                    '_blank'
+                  );
+                }}              
+            >
+              Invite
+            </button>
               <span className="flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M16 13l4-4m0 0l4 4m-4-4v12M4 3h16c1.104 0 2 .896 2 2v14c0 1.104-.896 2-2 2H4c-1.104 0-2-.896-2-2V5c0-1.104.896-2 2-2z"/>
