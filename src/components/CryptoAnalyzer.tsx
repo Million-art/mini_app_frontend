@@ -17,11 +17,8 @@ const CryptoAnalyzer: React.FC = () => {
   };
 
   return (
-<<<<<<< HEAD
-    <section className="flex justify-center bg-gray-900   ">
-=======
+
     <section className="flex justify-center bg-gray-dark   ">
->>>>>>> ui-update
       <form
         onSubmit={handleAnalyze}
         className="  shadow-md rounded-lg p-6 w-96"
@@ -43,11 +40,8 @@ const CryptoAnalyzer: React.FC = () => {
             value={symbol}
             onChange={(e) => setSymbol(e.target.value)}
             placeholder="Enter symbol"
-<<<<<<< HEAD
-            className=" px-4 w-48 py-2 border rounded-md focus:ring text-black focus:ring-blue-300 focus:outline-none"
-=======
+
             className=" px-4 w-48 py-2 border rounded-md focus:ring text-black focus:ring-yellow focus:outline-none"
->>>>>>> ui-update
             required
           />
         </div>
@@ -60,11 +54,8 @@ const CryptoAnalyzer: React.FC = () => {
             id="timeframe"
             value={timeframe}
             onChange={(e) => setTimeframe(e.target.value)}
-<<<<<<< HEAD
-            className="w-full px-4 py-2 border rounded-md focus:ring text-black focus:ring-blue-300 focus:outline-none"
-=======
+
             className="w-full px-4 py-2 border rounded-md focus:ring text-primary focus:ring-yellow focus:outline-none"
->>>>>>> ui-update
           >
             <option value="1 Hour">1 Hour</option>
             <option value="4 Hours">4 Hours</option>
@@ -77,11 +68,8 @@ const CryptoAnalyzer: React.FC = () => {
 
         <button
           type="submit"
-<<<<<<< HEAD
-          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300"
-=======
+
           className="w-full bg-yellow font-bold text-black py-2 rounded-md hover:bg-yellow-light transition duration-300"
->>>>>>> ui-update
         >
           Analyze →
         </button>
@@ -101,17 +89,7 @@ const CryptoAnalyzer: React.FC = () => {
             <ul className="text-sm mb-4 space-y-2">
               <li>
                 <span className="font-semibold">1st tranche</span>: 20% of the
-<<<<<<< HEAD
-                operative capital — <span className="text-green-400">$89,000</span>
-              </li>
-              <li>
-                <span className="font-semibold">2nd tranche</span>: 30% of the
-                operative capital — <span className="text-green-400">$85,000</span>
-              </li>
-              <li>
-                <span className="font-semibold">3rd tranche</span>: 50% of the
-                operative capital — <span className="text-green-400">$80,000</span>
-=======
+
                 operative capital — <span className="text-green-dark">$89,000</span>
               </li>
               <li>
@@ -121,16 +99,12 @@ const CryptoAnalyzer: React.FC = () => {
               <li>
                 <span className="font-semibold">3rd tranche</span>: 50% of the
                 operative capital — <span className="text-green-dark">$80,000</span>
->>>>>>> ui-update
               </li>
             </ul>
             <button
               onClick={closePopup}
-<<<<<<< HEAD
-              className="w-full bg-red-500 text-white py-2 rounded-md hover:bg-red-600 transition duration-300"
-=======
+
               className="w-full bg-red text-white py-2 rounded-md hover:bg-red transition duration-300"
->>>>>>> ui-update
             >
               Close
             </button>

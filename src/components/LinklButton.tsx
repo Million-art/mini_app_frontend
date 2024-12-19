@@ -41,19 +41,12 @@ const LinklButton: React.FC<LinklButtonProps> = ({
           ) : (
             <div className="mr-1" onClick={(e) => e.stopPropagation()}>
               {isClaimed ? (
-<<<<<<< HEAD
-                <FaCheck className="text-green-500" aria-label="Claimed" />
-              ) : canClaim ? (
-                <button
-
-                  className="bg-blue-500 hover:bg-blue-700 text-white text-sm font-bold px-2 py-1 rounded"
-=======
+ 
                 <FaCheck className="text-green-dark" aria-label="Claimed" />
               ) : canClaim ? (
                 <button
 
                   className="bg-yellow-light hover:bg-yellow text-white text-sm font-bold px-2 py-1 rounded"
->>>>>>> ui-update
                   aria-label="Claim Reward"
                 >
                   Claim
