@@ -109,7 +109,7 @@ const Referrals = () => {
                 </div>
               </div>
               <div className="flex-shrink-0 mr-2">
-                <div className="border-2 border-yellow-700 overflow-hidden flex items-center justify-center rounded-full bg-gray-dark h-10 w-10">
+                <div className="border-2 border-yellow overflow-hidden flex items-center justify-center rounded-full bg-gray-dark h-10 w-10">
                   {userImage ? (
                     <img
                       className="w-9 h-9 object-contain"
