@@ -129,39 +129,57 @@ const Daily: React.FC  = () => {
   }, [calculateClaimAmount]);
 
   return (
-
-    <div className="text-white bg-gray-deep h-screen">
-      <div className="flex items-center justify-center py-10">
-        <div className="rounded-full p-4">
-          <FaCalendarCheck className="w-28 h-28 object-contain text-yellow" />
+    <div className="h-screen   bg-gradient-to-r from-gray-900 to-black  flex items-center justify-center">
+      <div className="glass-card relative p-8 rounded-3xl shadow-lg max-w-md w-full text-center">
+        {/* Header Icon */}
+        <div className="flex justify-center mb-6">
+          <div className="p-6 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-full animate-bounce shadow-lg">
+            <FaCalendarCheck className="text-6xl text-white" />
+          </div>
         </div>
-      </div>
-      <p className="text-center font-bold text-3xl">Daily Rewards</p>
-      <p className="text-center text-lg mt-2">
-        Here you can claim your daily rewards
-      </p>
-      <p className="text-center text-xl font-bold mt-4 ">(Day {claimDay})</p>
-      <div className="mx-10 mt-20">
-        {isClaimed ? (
-          <button
-            disabled
 
-            className="w-full bg-gray-medium text-white font-bold py-2 rounded cursor-not-allowed"
-          >
-            Claimed for today
-          </button>
-        ) : (
-          <button
-            onClick={handleClaim}
-            disabled={claimDisabled}
-            className={`w-full ${
+        {/* Title */}
+        <p className="text-4xl font-bold text-white tracking-wide">
+          Daily Rewards
+        </p>
+        <p className="text-lg text-gray-300 mt-2">Claim your reward for today!</p>
+        <p className="text-2xl font-bold text-yellow-400 mt-4">Day {claimDay}</p>
 
-              claimDisabled ? "bg-gray-dark" : "bg-yellow hover:bg-yellow-light"
-            } text-white font-bold py-2 rounded`}
-          >
-            Claim ${formatNumber(claimAmount)}
-          </button>
+        {/* Reward Button */}
+        <div className="mt-8">
+          {isClaimed ? (
+            <button
+              disabled
+              className="w-full bg-gray-700 text-gray-400 font-bold py-4 rounded-lg cursor-not-allowed shadow-lg"
+            >
+              🎉 Claimed for today!
+            </button>
+          ) : (
+            <button
+              onClick={handleClaim}
+              disabled={claimDisabled}
+              className={`w-full py-4 font-bold text-white rounded-lg shadow-lg transform transition-all duration-300 ${
+                claimDisabled
+                  ? "bg-gray-500 cursor-not-allowed"
+                  : "bg-gradient-to-r from-yellow-400 to-yellow-600 hover:scale-105 hover:shadow-2xl"
+              }`}
+            >
+              Claim ${formatNumber(claimAmount)}
+            </button>
+          )}
+        </div>
+
+        {/* Countdown */}
+        {isClaimed && (
+          <p className="text-gray-400 text-sm mt-4">
+            Next reward available in <span className="text-yellow-400">24h</span>
+          </p>
         )}
+      </div>
+
+      {/* Footer Animation */}
+      <div className="absolute bottom-10 text-center w-full">
+        <span className="text-gray-400 animate-pulse">More rewards tomorrow!</span>
       </div>
     </div>
   );
