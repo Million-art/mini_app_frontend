@@ -10,24 +10,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@bitget-wallet/omni-connect": "^2.0.3",
-    "@okxconnect/tonsdk": "^1.6.0",
     "@telegram-apps/sdk": "^2.9.0",
-    "@ton/core": "^0.59.0",
-    "@tonconnect/sdk": "^3.0.5",
-    "@tonconnect/ui": "^2.0.9",
     "@tonconnect/ui-react": "^2.0.9",
     "axios": "^1.7.9",
     "clipboard-copy": "^4.0.1",
     "crypto-js": "^4.2.0",
     "firebase": "^11.0.2",
     "react": "^18.3.1",
-    "react-confetti": "^6.1.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.4.0",
     "react-router-dom": "^7.0.2",
-    "react-share": "^5.1.1",
+    "react-slick": "^0.30.3",
     "react-toastify": "^10.0.6",
+    "slick-carousel": "^1.8.1",
     "ts": "file:"
   },
   "devDependencies": {

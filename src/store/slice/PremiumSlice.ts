@@ -5,7 +5,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 const initialState = {
   loading: true,
   hasPurchased: false,
-  hasExchange: false,
+  hasMRBToken: false,
 };
 
 const premiumSlice = createSlice({
@@ -16,8 +16,8 @@ const premiumSlice = createSlice({
       state.loading = action.payload;
     },
    
-    setHasExchange: (state, action: PayloadAction<boolean>) => {
-      state.hasExchange = action.payload;
+    sethasMRBToken: (state, action: PayloadAction<boolean>) => {
+      state.hasMRBToken = action.payload;
     },
   },
 });
@@ -26,5 +26,5 @@ const premiumSlice = createSlice({
 export const selectPremiumState = (state: RootState) => state.premium;
 
 // Export actions and reducer
-export const { setLoading, setHasExchange } = premiumSlice.actions;
+export const { setLoading, sethasMRBToken } = premiumSlice.actions;
 export default premiumSlice.reducer;

@@ -3,6 +3,7 @@ import { db } from "@/firebase";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { telegramId, profilePicture } from "@/libs/telegram"; 
 import Loading from "./Loading";
+
 interface User {
     id: string;
     balance: number;
@@ -73,7 +74,7 @@ const Profile = () => {
     }, [id]);   
 
     if (loading) {
-        return  <Loading />  
+        return <Loading />;  
     }
 
     if (!user) {
@@ -81,37 +82,35 @@ const Profile = () => {
     }
 
     return (
-
-        <section className="flex items-center   bg-gray-dark p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
-        {/* Profile Picture Section */}
-        <div className="z-20">
-          <div className="border-4 border-yellow-light flex items-center justify-center rounded-full bg-yellow w-16 h-16 overflow-hidden">
-            {user ? (
-              <img
-                className="object-cover w-full h-full"
-                src={profilePicture}
-                alt={`${user.firstName}'s profile`}
-              />
-            ) : (
-
-              <div className="text-2xl text-white bg-primary w-16 h-16 flex items-center justify-center">
-                {user.firstName.charAt(0).toUpperCase()}
-              </div>
-            )}
-          </div>
-        </div>
-      
-        {/* User Info Section */}
-        <div className="ml-4 w-full">
-          <div className="mb-3">
-            <h1 className="text-white text-2xl font-semibold">
-              {`Welcome, ${user.firstName}`}   
-            </h1>
-            <p className="text-gray-400 text-sm mt-1">{`Balance: ${user.balance}$`}</p>
-          </div>
-      
-          {/* Rank Section */}
-          <p className="text-sm mb-4 tracking-wider text-gray-300">
+        <section className="flex items-center bg-gray-dark p-6 rounded-lg shadow-lg max-w-4xl mx-auto">
+            {/* Profile Picture Section */}
+            <div className="z-20">
+                <div className="border-4 border-yellow-light flex items-center justify-center rounded-full bg-yellow w-16 h-16 overflow-hidden">
+                    {user ? (
+                        <img
+                            className="object-cover w-full h-full"
+                            src={profilePicture}
+                            alt={`${user.firstName}'s profile`}
+                        />
+                    ) : (
+                        <div className="text-2xl text-white bg-primary w-16 h-16 flex items-center justify-center">
+                            {user.firstName.charAt(0).toUpperCase()}
+                        </div>
+                    )}
+                </div>
+            </div>
+        
+            {/* User Info Section */}
+            <div className="ml-4 w-full">
+                <div className="mb-3">
+                    <h1 className="text-white text-2xl font-semibold">
+                        {`Welcome, ${user.firstName}`}   
+                    </h1>
+                    <p className="text-gray-400 text-sm mt-1">{`Balance: ${user.balance}$`}</p>
+                </div>
+        
+                {/* Rank Section */}
+                <p className="text-sm mb-4 tracking-wider text-gray-300">
                     Your rank: <span className="font-semibold text-yellow-400">{user.rank}</span> of {totalUsers}
                 </p>
 
@@ -120,16 +119,15 @@ const Profile = () => {
                     <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
                         <div
                             className="h-full bg-yellow-400 transition-all duration-300 ease-in-out"
-                            style={{ width: `${(user.rank / totalUsers) * 100}%` }}  // Progress bar based on rank
+                            style={{ width: `${((totalUsers - user.rank) / totalUsers) * 100}%` }} // Corrected calculation
                         />
                     </div>
                     <span className="ml-3 text-sm text-gray-300">
-                        {((user.rank / totalUsers) * 100).toFixed(1)}%
+                        {((totalUsers - user.rank) / totalUsers * 100).toFixed(1)}%
                     </span>
                 </div>
-        </div>
-      </section>
-      
+            </div>
+        </section>
     );
 };
 

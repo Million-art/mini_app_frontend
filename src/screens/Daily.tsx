@@ -129,7 +129,7 @@ const Daily: React.FC  = () => {
   }, [calculateClaimAmount]);
 
   return (
-    <div className="h-screen justify-center bg-gradient-to-r from-gray-900 to-black  flex items-center justify-center">
+    <div className="h-screen   bg-gradient-to-r from-gray-900 to-black  flex items-center justify-center">
       <div className="glass-card relative p-8 rounded-3xl shadow-lg max-w-md w-full text-center">
         {/* Header Icon */}
         <div className="flex justify-center mb-6">
