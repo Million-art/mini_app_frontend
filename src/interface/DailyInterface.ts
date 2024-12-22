@@ -1,5 +1,4 @@
 import { Timestamp } from "firebase/firestore";
-// DailyInterface.ts
 
 export interface UserDaily {
     claimedTime: Timestamp | Date | null;
@@ -13,6 +12,6 @@ export interface UserDaily {
   
   export interface DailyProps {
     user: User;
-    dispatch: any; // Replace `any` with the appropriate Redux Dispatch type if possible.
+    dispatch: any;  
   }
   

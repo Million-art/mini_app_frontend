@@ -4,14 +4,7 @@ import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { telegramId, profilePicture } from "@/libs/telegram"; 
 import Loading from "./Loading";
 
-interface User {
-    id: string;
-    balance: number;
-    firstName: string;
-    lastName: string;
-    userImage: string | null;
-    rank?: number;  
-}
+
 
 const Profile = () => {
     const id = String(telegramId);  
@@ -78,7 +71,7 @@ const Profile = () => {
     }
 
     if (!user) {
-        return <p>No user data found.</p>;  // Handle case where user is not found
+        return <p>No user data found.</p>;  
     }
 
     return (
@@ -119,7 +112,7 @@ const Profile = () => {
                     <div className="w-full h-3 bg-gray-700 rounded-full overflow-hidden">
                         <div
                             className="h-full bg-yellow-400 transition-all duration-300 ease-in-out"
-                            style={{ width: `${((totalUsers - user.rank) / totalUsers) * 100}%` }} // Corrected calculation
+                            style={{ width: `${((totalUsers - user.rank) / totalUsers) * 100}%` }} 
                         />
                     </div>
                     <span className="ml-3 text-sm text-gray-300">

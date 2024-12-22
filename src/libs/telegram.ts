@@ -1,5 +1,5 @@
 import { retrieveLaunchParams } from '@telegram-apps/sdk';
-
+//  intializing user  to fetch the user data
 const { initData } = retrieveLaunchParams();
 export const telegramId = initData?.user?.id;
 export const userName = initData?.user?.username;

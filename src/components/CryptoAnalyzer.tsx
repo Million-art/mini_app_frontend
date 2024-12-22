@@ -74,7 +74,7 @@ const CryptoAnalyzer: React.FC = () => {
           Analyze →
         </button>
       </form>
-        {/* Popup for displaying mock analysis */}
+
         {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-40">
           <div className="bg-gray-800 text-white rounded-lg shadow-lg p-6 w-96">

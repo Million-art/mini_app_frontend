@@ -27,7 +27,7 @@ import { selectUser } from "./store/slice/userSlice";
 import { selectCalculate } from "./store/slice/calculateSlice";
 import { AppDispatch, RootState } from "./store/store";  
 
-//telegram user import
+//telegram user info import
 import { telegramId } from "./libs/telegram";
 import { userName } from "./libs/telegram";
 import { firstName } from "./libs/telegram";

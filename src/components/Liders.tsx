@@ -1,15 +1,9 @@
 import { useEffect, useState } from "react";
 import { db } from "@/firebase";  
 import { collection, query, orderBy, limit, getDocs } from "firebase/firestore";
+import { TopUser } from "@/interface/TopUsers";
 
-// Define the type for the user
-type TopUser = {
-    id: string;
-    balance: number;
-    firstName: string;
-    lastName: string;
-    userImage?: string;
-};
+
 
 const Liders = () => {
     const [topUsers, setTopUsers] = useState<TopUser[]>([]);   
@@ -20,11 +14,11 @@ const Liders = () => {
     useEffect(() => {
         const fetchTopUsers = async () => {
             try {
-                // Create a query to get users sorted by balance in descending order, limiting to top 10
+                // Create a query to get users sorted by balance in descending order, limiting to top 50
                 const q = query(
                     collection(db, "users"),  
                     orderBy("balance", "desc"),
-                    limit(10)
+                    limit(50)
                 );
 
                 // Execute the query

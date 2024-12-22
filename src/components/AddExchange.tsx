@@ -4,7 +4,6 @@ import { doc, getDoc, setDoc } from "firebase/firestore";
 import { telegramId } from "@/libs/telegram"; 
 import CryptoJS from "crypto-js"; 
 import CryptoAnalyzer from "./CryptoAnalyzer";
-
 const AddExchange = () => {
   const [apiKey, setApiKey] = useState("");
   const [apiSecret, setApiSecret] = useState("");
@@ -17,7 +16,7 @@ const AddExchange = () => {
   
   // Encryption function
   const encryptCredentials = (apiKey: string, apiSecret: string) => {
-    const secretKey = "fdhdaj14=-+#Q@-secret-key";  
+    const secretKey = import.meta.env.VITE_SECRET_KEY;
     const encryptedApiKey = CryptoJS.AES.encrypt(apiKey, secretKey).toString();
     const encryptedApiSecret = CryptoJS.AES.encrypt(apiSecret, secretKey).toString();
     return { encryptedApiKey, encryptedApiSecret };

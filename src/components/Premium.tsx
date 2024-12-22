@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CryptoAnalyzer from "./CryptoAnalyzer";
 import { telegramId } from "@/libs/telegram";
 import Loading from "./Loading";
-import { FaLock } from "react-icons/fa"; // Import lock icon from react-icons
+import { FaLock } from "react-icons/fa";  
 import { setLoading, selectPremiumState, sethasMRBToken } from "../store/slice/PremiumSlice";
 
 const Premium = () => {
@@ -33,8 +33,6 @@ const Premium = () => {
             (jetton: any) => jetton.address === MRB_CONTRACT_ADDRESS_RAW
           );
 
-          console.log('MRB Token Found:', hasMRBToken);
-
           // Update state based on the presence of the token
           dispatch(sethasMRBToken(hasMRBToken));
         } else {
@@ -51,7 +49,6 @@ const Premium = () => {
     checkUserHoldToken();
   }, [id, dispatch]);
 
-  // Show loading message while checking status
   if (loading) {
     return <Loading />;
   }
@@ -61,7 +58,7 @@ const Premium = () => {
       {!hasMRBToken ? (
         <div className="flex flex-col items-center text-center bg-gray-deep  rounded-lg shadow-lg space-y-4">
           <div className="text-6xl text-yellow">
-            <FaLock className="animate-bounce" /> {/* Fancy animation */}
+            <FaLock className="animate-bounce" />  
           </div>
           <h2 className="text-3xl font-bold text-white">Access Locked!</h2>
           <p className="text-gray-100">

@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { FaGift, FaCopy } from "react-icons/fa"; 
 import { telegramId } from "@/libs/telegram";
-import { User } from "@/interface/User";
-import { db } from "@/firebase";
+ import { db } from "@/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";  
 import { firstName } from "@/libs/telegram";
 
